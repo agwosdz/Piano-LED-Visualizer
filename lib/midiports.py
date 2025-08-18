@@ -80,16 +80,16 @@ class MidiPorts:
         try:
             destroy_old = None
             if port == "inport":
-                destory_old = self.inport
+                destroy_old = self.inport
                 self.inport = mido.open_input(portname, callback=self.msg_callback)
                 self.usersettings.change_setting_value("input_port", portname)
             elif port == "playport":
-                destory_old = self.playport
+                destroy_old = self.playport
                 self.playport = mido.open_output(portname)
                 self.usersettings.change_setting_value("play_port", portname)
             self.menu.render_message("Changing " + port + " to:", portname, 1500)
             if destroy_old is not None:
-                destory_old.close()
+                destroy_old.close()
             self.menu.show()
         except:
             self.menu.render_message("Can't change " + port + " to:", portname, 1500)
