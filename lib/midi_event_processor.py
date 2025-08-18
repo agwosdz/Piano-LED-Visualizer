@@ -153,7 +153,7 @@ class MIDIEventProcessor:
         
         # Calculate brightness based on velocity if in velocity mode
         if self.ledsettings.mode == "Velocity":
-            brightness = (100 / (float(velocity) / 127)) / 100
+            brightness = max(0.01, (100 / max(1, (float(velocity) / 127)) / 100)
         else:
             brightness = 1
 
