@@ -54,6 +54,20 @@ function loadAjax(subpage) {
             if (this.readyState === 4 && this.status === 200) {
                 current_page = subpage;
                 mainElement.innerHTML = this.responseText;
+                
+                // Execute scripts in the loaded content
+                const scripts = mainElement.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.head.appendChild(newScript);
+                    document.head.removeChild(newScript);
+                });
+                
                 setTimeout(() => {
                     mainElement.classList.add("show");
                 }, 100);
@@ -98,6 +112,10 @@ function loadAjax(subpage) {
                         clearInterval(homepage_interval);
                         get_wifi_list();
                         getCurrentLocalAddress();
+                        break;
+                    case "usb_gadget":
+                        clearInterval(homepage_interval);
+                        initialize_usb_gadget();
                         break;
                 }
             }
@@ -257,7 +275,7 @@ function checkSavedMode() {
     if (mode) {
         const modeSwitch = document.getElementById('modeSwitch');
 
-        if (mode === 'advanced') {
+        if (modeSwitch && mode === 'advanced') {
             modeSwitch.checked = true;
             setAdvancedMode(true);
         }

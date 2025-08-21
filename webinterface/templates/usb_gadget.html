@@ -1,0 +1,360 @@
+<div class="transition duration-300 slide-in-content w-full lg:w-4/5 xl:w-4/5 2xl:w-3/5 m-auto
+grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-6">
+    <!-- USB MIDI Gadget Status -->
+    <div class="flex-1 grid p-5 bg-gray-200 dark:bg-gray-700 shadow-xl rounded-lg">
+        <div class="flex-1 font-bold text-xl pb-2 text-gray-600 dark:text-gray-400">
+            <div class="flex">
+                <div data-translate="usb_midi_gadget">USB MIDI Gadget</div>
+                <div class='has-tooltip'>
+                    <span class='text-xs inline-block tooltip rounded shadow-lg p-1 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 -mt-8'>
+                        <div data-translate="usb_gadget_tooltip">Enables the Raspberry Pi to act as a USB MIDI device when connected to a PC via USB.</div>
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4 mt-2" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap -mx-3">
+            <div class="w-full md:w-1/2 px-3 mb-4">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2 text-gray-600 dark:text-gray-400">
+                    Status
+                </label>
+                <div id="gadget-status" class="h-10 flex items-center px-3 bg-gray-100 dark:bg-gray-600 rounded-2xl">
+                    <span id="status-text" class="text-sm">Loading...</span>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/2 px-3 mb-4">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2 text-gray-600 dark:text-gray-400">
+                    Control
+                </label>
+                <div class="flex space-x-2">
+                    <button id="enable-gadget" onclick="enableUSBGadget()"
+                            class="flex-1 h-10 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-2xl">
+                        Enable
+                    </button>
+                    <button id="disable-gadget" onclick="disableUSBGadget()"
+                            class="flex-1 h-10 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-2xl">
+                        Disable
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center mb-4">
+            <input id="auto-enable-checkbox" type="checkbox" value=""
+                   class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="auto-enable-checkbox" class="pl-2 block uppercase tracking-wide text-xs font-bold text-gray-600 dark:text-gray-400">
+                Auto-enable on startup
+            </label>
+        </div>
+    </div>
+
+    <!-- USB Device Configuration -->
+    <div class="flex-1 grid p-5 bg-gray-200 dark:bg-gray-700 shadow-xl rounded-lg">
+        <div class="flex-1 font-bold text-xl pb-2 text-gray-600 dark:text-gray-400">
+            Device Configuration
+        </div>
+
+        <div class="flex flex-wrap -mx-3">
+            <div class="w-full md:w-1/2 px-3 mb-4">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2 text-gray-600 dark:text-gray-400">
+                    Vendor ID
+                </label>
+                <input id="vendor-id" type="text" placeholder="0x1d6b"
+                       class="h-10 block w-full bg-gray-100 dark:bg-gray-600 py-2 px-3 rounded-2xl leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+            </div>
+
+            <div class="w-full md:w-1/2 px-3 mb-4">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2 text-gray-600 dark:text-gray-400">
+                    Product ID
+                </label>
+                <input id="product-id" type="text" placeholder="0x0104"
+                       class="h-10 block w-full bg-gray-100 dark:bg-gray-600 py-2 px-3 rounded-2xl leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+            </div>
+
+            <div class="w-full px-3 mb-4">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2 text-gray-600 dark:text-gray-400">
+                    Manufacturer
+                </label>
+                <input id="manufacturer" type="text" placeholder="Piano LED Visualizer"
+                       class="h-10 block w-full bg-gray-100 dark:bg-gray-600 py-2 px-3 rounded-2xl leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+            </div>
+
+            <div class="w-full px-3 mb-4">
+                <label class="block uppercase tracking-wide text-xs font-bold mb-2 text-gray-600 dark:text-gray-400">
+                    Product Name
+                </label>
+                <input id="product-name" type="text" placeholder="Piano LED MIDI Device"
+                       class="h-10 block w-full bg-gray-100 dark:bg-gray-600 py-2 px-3 rounded-2xl leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+            </div>
+
+            <div class="w-full px-3">
+                <button onclick="saveUSBGadgetSettings()"
+                        class="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-2xl">
+                    Save Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prerequisites Check -->
+    <div class="flex-1 grid p-5 bg-gray-200 dark:bg-gray-700 shadow-xl rounded-lg">
+        <div class="flex-1 font-bold text-xl pb-2 text-gray-600 dark:text-gray-400">
+            System Requirements
+        </div>
+
+        <div id="prerequisites-list" class="space-y-2">
+            <!-- Prerequisites will be populated by JavaScript -->
+        </div>
+
+        <div class="mt-4">
+            <button onclick="checkPrerequisites()"
+                    class="w-full h-10 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-2xl">
+                Check Requirements
+            </button>
+        </div>
+    </div>
+
+    <!-- Setup Instructions -->
+    <div class="flex-1 grid p-5 bg-gray-200 dark:bg-gray-700 shadow-xl rounded-lg">
+        <div class="flex-1 font-bold text-xl pb-2 text-gray-600 dark:text-gray-400">
+            Setup Instructions
+        </div>
+
+        <div class="text-sm text-gray-600 dark:text-gray-400 space-y-2">
+            <p><strong>1. Run Setup Script:</strong></p>
+            <code class="block bg-gray-100 dark:bg-gray-600 p-2 rounded text-xs">
+                sudo bash setup_usb_gadget.sh
+            </code>
+            
+            <p><strong>2. Reboot System:</strong></p>
+            <code class="block bg-gray-100 dark:bg-gray-600 p-2 rounded text-xs">
+                sudo reboot
+            </code>
+            
+            <p><strong>3. Connect USB Cable:</strong></p>
+            <p class="text-xs">Use the USB-C port (or micro USB on older models) to connect to your PC.</p>
+            
+            <p><strong>4. Enable Gadget:</strong></p>
+            <p class="text-xs">Use the Enable button above to activate USB MIDI gadget mode.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+// USB Gadget Management Functions
+let gadgetStatus = {
+    enabled: false,
+    available: false,
+    settings: {}
+};
+
+function loadUSBGadgetStatus() {
+    fetch('/api/usb_gadget_status')
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    throw new Error(data.error || 'HTTP error ' + response.status);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            gadgetStatus = data;
+            updateStatusDisplay();
+            updateSettingsForm();
+        })
+        .catch(error => {
+            console.error('Error loading USB gadget status:', error);
+            const statusTextElement = document.getElementById('status-text');
+            if (statusTextElement) {
+                statusTextElement.textContent = 'Error loading status';
+            }
+        });
+}
+
+function updateStatusDisplay() {
+    const statusText = document.getElementById('status-text');
+    const enableBtn = document.getElementById('enable-gadget');
+    const disableBtn = document.getElementById('disable-gadget');
+    
+    // Check if elements exist before manipulating them
+    if (!statusText || !enableBtn || !disableBtn) {
+        console.error('Required elements not found for status display');
+        return;
+    }
+    
+    if (gadgetStatus.enabled) {
+        statusText.textContent = 'Enabled';
+        statusText.className = 'text-sm text-green-600';
+        enableBtn.disabled = true;
+        enableBtn.className = enableBtn.className.replace('bg-green-500 hover:bg-green-600', 'bg-gray-400');
+        disableBtn.disabled = false;
+        disableBtn.className = disableBtn.className.replace('bg-gray-400', 'bg-red-500 hover:bg-red-600');
+    } else if (gadgetStatus.available) {
+        statusText.textContent = 'Disabled';
+        statusText.className = 'text-sm text-yellow-600';
+        enableBtn.disabled = false;
+        enableBtn.className = enableBtn.className.replace('bg-gray-400', 'bg-green-500 hover:bg-green-600');
+        disableBtn.disabled = true;
+        disableBtn.className = disableBtn.className.replace('bg-red-500 hover:bg-red-600', 'bg-gray-400');
+    } else {
+        statusText.textContent = 'Not Available';
+        statusText.className = 'text-sm text-red-600';
+        enableBtn.disabled = true;
+        disableBtn.disabled = true;
+        enableBtn.className = enableBtn.className.replace('bg-green-500 hover:bg-green-600', 'bg-gray-400');
+        disableBtn.className = disableBtn.className.replace('bg-red-500 hover:bg-red-600', 'bg-gray-400');
+    }
+}
+
+function updateSettingsForm() {
+    if (gadgetStatus.settings) {
+        document.getElementById('auto-enable-checkbox').checked = gadgetStatus.settings.usb_gadget_auto_enable === 'True';
+        document.getElementById('vendor-id').value = gadgetStatus.settings.usb_gadget_vendor_id || '0x1d6b';
+        document.getElementById('product-id').value = gadgetStatus.settings.usb_gadget_product_id || '0x0104';
+        document.getElementById('manufacturer').value = gadgetStatus.settings.usb_gadget_manufacturer || 'Piano LED Visualizer';
+        document.getElementById('product-name').value = gadgetStatus.settings.usb_gadget_product_name || 'Piano LED MIDI Device';
+    }
+}
+
+function enableUSBGadget() {
+    fetch('/api/usb_gadget_enable', { method: 'POST' })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    throw new Error(data.error || 'HTTP error ' + response.status);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                showNotification('USB MIDI gadget enabled successfully', 'success');
+                loadUSBGadgetStatus();
+            } else {
+                showNotification('Failed to enable USB MIDI gadget: ' + data.error, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error enabling USB gadget:', error);
+            showNotification('Error enabling USB MIDI gadget: ' + error.message, 'error');
+        });
+}
+
+function disableUSBGadget() {
+    fetch('/api/usb_gadget_disable', { method: 'POST' })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    throw new Error(data.error || 'HTTP error ' + response.status);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                showNotification('USB MIDI gadget disabled successfully', 'success');
+                loadUSBGadgetStatus();
+            } else {
+                showNotification('Failed to disable USB MIDI gadget: ' + data.error, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error disabling USB gadget:', error);
+            showNotification('Error disabling USB MIDI gadget: ' + error.message, 'error');
+        });
+}
+
+function saveUSBGadgetSettings() {
+    const settings = {
+        usb_gadget_auto_enable: document.getElementById('auto-enable-checkbox').checked,
+        usb_gadget_vendor_id: document.getElementById('vendor-id').value,
+        usb_gadget_product_id: document.getElementById('product-id').value,
+        usb_gadget_manufacturer: document.getElementById('manufacturer').value,
+        usb_gadget_product_name: document.getElementById('product-name').value
+    };
+    
+    fetch('/api/usb_gadget_settings', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(settings)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(data => {
+                throw new Error(data.error || 'HTTP error ' + response.status);
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            showNotification('Settings saved successfully', 'success');
+            loadUSBGadgetStatus();
+        } else {
+            showNotification('Failed to save settings: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error saving settings:', error);
+        showNotification('Error saving settings: ' + error.message, 'error');
+    });
+}
+
+function checkPrerequisites() {
+    // This would typically make an API call to check system requirements
+    const prerequisites = [
+        { name: 'dwc2 overlay enabled', status: 'unknown' },
+        { name: 'libcomposite module available', status: 'unknown' },
+        { name: 'configfs mounted', status: 'unknown' },
+        { name: 'USB gadget support', status: 'unknown' }
+    ];
+    
+    const listElement = document.getElementById('prerequisites-list');
+    listElement.innerHTML = '';
+    
+    prerequisites.forEach(req => {
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between p-2 bg-gray-100 dark:bg-gray-600 rounded';
+        item.innerHTML = `
+            <span class="text-sm">${req.name}</span>
+            <span class="text-xs px-2 py-1 rounded ${
+                req.status === 'ok' ? 'bg-green-200 text-green-800' :
+                req.status === 'error' ? 'bg-red-200 text-red-800' :
+                'bg-yellow-200 text-yellow-800'
+            }">${req.status}</span>
+        `;
+        listElement.appendChild(item);
+    });
+}
+
+function showNotification(message, type) {
+    // Simple notification function - you might want to integrate with existing notification system
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 p-4 rounded-lg z-50 ${
+        type === 'success' ? 'bg-green-500 text-white' :
+        type === 'error' ? 'bg-red-500 text-white' :
+        'bg-blue-500 text-white'
+    }`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
+}
+
+// Load status when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadUSBGadgetStatus();
+    checkPrerequisites();
+});
+</script>

@@ -50,6 +50,8 @@ function formatBytes(bytes, decimals = 2, suffix = true) {
 }
 
 function animateValue(obj, start, end, duration, format = false) {
+    if (!obj) return; // Guard against null objects
+    
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
@@ -142,12 +144,17 @@ function formatTime(timeInSeconds) {
 
 function startRecordingTimer() {
     const timerElement = document.getElementById('recording_timer');
+    if (!timerElement) return; // Guard against null element
+    
     timerElement.classList.remove('hidden');
     recordingStartTime = Date.now();
 
     recordingTimer = setInterval(() => {
         const currentTime = Math.floor((Date.now() - recordingStartTime) / 1000);
-        timerElement.querySelector('span').textContent = formatTime(currentTime);
+        const spanElement = timerElement.querySelector('span');
+        if (spanElement) {
+            spanElement.textContent = formatTime(currentTime);
+        }
     }, 1000);
 }
 
@@ -161,5 +168,7 @@ function stopRecordingTimer() {
 function hideRecordingTimer() {
     stopRecordingTimer();
     const timerElement = document.getElementById('recording_timer');
-    timerElement.classList.add('hidden');
+    if (timerElement) {
+        timerElement.classList.add('hidden');
+    }
 }

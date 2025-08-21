@@ -8,6 +8,7 @@ from lib.log_setup import logger
 import re
 import socket
 from collections import defaultdict
+import platform
 
 
 class Hotspot:
@@ -16,7 +17,9 @@ class Hotspot:
         self.time_without_wifi = 0
         self.last_wifi_check_time = 0
 
-        subprocess.run("sudo chmod a+rwxX -R /home/Piano-LED-Visualizer/", shell=True, check=True)
+        # Only run chmod on Linux/Raspberry Pi systems
+        if platform.system() != 'Windows':
+            subprocess.run("sudo chmod a+rwxX -R /home/Piano-LED-Visualizer/", shell=True, check=True)
 
 class PlatformBase:
     def __getattr__(self, name):
@@ -53,6 +56,11 @@ class PlatformRasp(PlatformBase):
 
     @staticmethod
     def copy_connectall_script():
+        # Only copy script on Linux/Raspberry Pi systems
+        if platform.system() == 'Windows':
+            logger.info("Skipping connectall.py script copy on Windows")
+            return
+            
         # make sure connectall.py file exists and is updated
         if not os.path.exists('/usr/local/bin/connectall.py') or \
                 filecmp.cmp('/usr/local/bin/connectall.py', 'lib/connectall.py') is not True:
@@ -61,6 +69,11 @@ class PlatformRasp(PlatformBase):
             os.chmod('/usr/local/bin/connectall.py', 493)
 
     def install_midi2abc(self):
+        # Only install on Linux/Raspberry Pi systems
+        if platform.system() == 'Windows':
+            logger.info("Skipping abcmidi installation on Windows")
+            return
+            
         if not self.is_package_installed("abcmidi"):
             logger.info("Installing abcmidi")
             subprocess.call(['sudo', 'apt-get', 'install', 'abcmidi', '-y'])

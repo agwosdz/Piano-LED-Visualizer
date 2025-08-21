@@ -12,6 +12,7 @@ from lib.midiports import MidiPorts
 from lib.platform import PlatformRasp, PlatformNull, Hotspot
 from lib.savemidi import SaveMIDI
 from lib.usersettings import UserSettings
+from lib.usb_gadget_midi import USBMIDIGadget
 
 
 class ComponentInitializer:
@@ -25,6 +26,7 @@ class ComponentInitializer:
         self.learning = LearnMIDI(self.usersettings, self.ledsettings, self.midiports, self.ledstrip)
         self.hotspot = Hotspot(self.platform)
         self.saving = SaveMIDI()
+        self.usb_gadget = USBMIDIGadget(self.usersettings)
         self.menu = MenuLCD("config/menu.xml", self.args, self.usersettings, self.ledsettings,
                             self.ledstrip, self.learning, self.saving, self.midiports,
                             self.hotspot, self.platform)
@@ -48,6 +50,12 @@ class ComponentInitializer:
         self.ledsettings.add_instance(self.menu, self.ledstrip)
         self.saving.add_instance(self.menu)
         self.learning.add_instance(self.menu)
+        
+        # Initialize USB gadget mode if enabled in settings
+        if self.usersettings.get_setting_value("usb_gadget_enabled") == "True":
+            logger.info("USB gadget mode enabled in settings, attempting to start...")
+            if self.usb_gadget.enable_gadget():
+                self.usb_gadget.start_midi_processing()
 
         self.menu.show()
         self.midiports.last_activity = time.time()

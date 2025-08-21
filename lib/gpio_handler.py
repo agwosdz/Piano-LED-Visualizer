@@ -1,6 +1,38 @@
 import time
-
-from RPi import GPIO
+try:
+    import RPi.GPIO as GPIO
+except ImportError:
+    # Fallback for when RPi.GPIO is not available (e.g., on Windows)
+    class MockGPIO:
+         BCM = 'BCM'
+         OUT = 'OUT'
+         IN = 'IN'
+         HIGH = 1
+         LOW = 0
+         PUD_UP = 'PUD_UP'
+         PUD_DOWN = 'PUD_DOWN'
+         
+         @staticmethod
+         def setmode(mode):
+             pass
+             
+         @staticmethod
+         def setup(pin, mode, pull_up_down=None):
+             pass
+             
+         @staticmethod
+         def output(pin, state):
+             pass
+             
+         @staticmethod
+         def input(pin):
+             return 0
+             
+         @staticmethod
+         def cleanup():
+             pass
+    
+    GPIO = MockGPIO()
 
 from lib.functions import fastColorWipe
 

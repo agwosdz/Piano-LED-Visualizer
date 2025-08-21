@@ -2,8 +2,14 @@
 
 import sys
 import os
-import fcntl
 import time
+
+# Platform-specific imports
+try:
+    import fcntl
+    HAS_FCNTL = True
+except ImportError:
+    HAS_FCNTL = False
 
 from lib.argument_parser import ArgumentParser
 from lib.component_initializer import ComponentInitializer
@@ -59,7 +65,8 @@ class VisualizerApp:
                                                          self.component_initializer.midiports,
                                                          self.component_initializer.menu,
                                                          self.component_initializer.hotspot,
-                                                         self.component_initializer.platform)
+                                                         self.component_initializer.platform,
+                                                         self.component_initializer.usb_gadget)
         self.midi_event_processor = MIDIEventProcessor(self.component_initializer.midiports,
                                                        self.component_initializer.ledstrip,
                                                        self.component_initializer.ledsettings,
@@ -87,12 +94,16 @@ class VisualizerApp:
         self.ledshow_timestamp = time.time()
 
     def ensure_singleton(self):
-        self.fh = open(os.path.realpath(__file__), 'r')
-        try:
-            fcntl.flock(self.fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except Exception as error:
-            logger.warning(f"[ensure_singleton] Unexpected exception occurred: {error}")
-            restart_script()
+        if HAS_FCNTL:
+            self.fh = open(os.path.realpath(__file__), 'r')
+            try:
+                fcntl.flock(self.fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except Exception as error:
+                logger.warning(f"[ensure_singleton] Unexpected exception occurred: {error}")
+                restart_script()
+        else:
+            # Windows fallback - just log that singleton check is skipped
+            logger.info("[ensure_singleton] Singleton check skipped on Windows platform")
 
     def run(self):
         self.component_initializer.platform.manage_hotspot(self.component_initializer.hotspot,

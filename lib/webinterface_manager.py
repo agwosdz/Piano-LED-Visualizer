@@ -7,10 +7,12 @@ from waitress import serve
 import webinterface as web_mod
 from lib.log_setup import logger
 from webinterface import webinterface, app_state
+from lib.flying_notes_renderer import FlyingNotesRenderer
+from lib.websocket_handler import WebSocketHandler
 
 
 class WebInterfaceManager:
-    def __init__(self, args, usersettings, ledsettings, ledstrip, learning, saving, midiports, menu, hotspot, platform):
+    def __init__(self, args, usersettings, ledsettings, ledstrip, learning, saving, midiports, menu, hotspot, platform, usb_gadget):
         self.args = args
         self.usersettings = usersettings
         self.ledsettings = ledsettings
@@ -21,6 +23,7 @@ class WebInterfaceManager:
         self.menu = menu
         self.hotspot = hotspot
         self.platform = platform
+        self.usb_gadget = usb_gadget
         self.websocket_loop = asyncio.new_event_loop()
         self.setup_web_interface()
 
@@ -37,6 +40,10 @@ class WebInterfaceManager:
             app_state.menu = self.menu
             app_state.hotspot = self.hotspot
             app_state.platform = self.platform
+            app_state.usb_midi_gadget = self.usb_gadget
+
+            # Initialize flying notes components
+            self._initialize_flying_notes()
 
             webinterface.jinja_env.auto_reload = True
             webinterface.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -60,3 +67,20 @@ class WebInterfaceManager:
             processThread.start()
 
             atexit.register(web_mod.stop_server, self.websocket_loop)
+    
+    def _initialize_flying_notes(self):
+        """Initialize flying notes renderer and WebSocket handler"""
+        try:
+            # Import views module to access global instances
+            import webinterface.views as views
+            
+            # Initialize flying notes renderer
+            views.flying_notes_renderer = FlyingNotesRenderer(self.usersettings, self.learning)
+            
+            # Initialize WebSocket handler
+            views.websocket_handler = WebSocketHandler(webinterface, views.flying_notes_renderer)
+            
+            logger.info('Flying notes components initialized successfully')
+            
+        except Exception as e:
+            logger.error(f'Failed to initialize flying notes components: {str(e)}')

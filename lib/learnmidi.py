@@ -1,7 +1,6 @@
 import ast
 import threading
 import time
-import json
 
 import mido
 import subprocess
@@ -14,20 +13,6 @@ from lib.rpi_drivers import Color
 import numpy as np
 import pickle
 from lib.log_setup import logger
-from lib.score_manager import ScoreManager
-
-import logging
-
-# Create a score logger
-score_logger = logging.getLogger("score_logger")
-score_logger.setLevel(logging.DEBUG)
-score_logger.propagate = False
-file_handler = logging.FileHandler("score_log.txt")
-file_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-file_handler.setFormatter(formatter)
-score_logger.addHandler(file_handler)
-score_logger.info("Score logger initialized.")
 
 
 def find_nearest(array, target):
@@ -51,8 +36,6 @@ class LearnMIDI:
         self.ledsettings = ledsettings
         self.midiports = midiports
         self.ledstrip = ledstrip
-        
-        # Initialize the score manager
 
         self.loading = 0
         self.practice = int(usersettings.get_setting_value("practice"))
@@ -89,6 +72,10 @@ class LearnMIDI:
         self.handsList = ['Both', 'Right', 'Left']
         self.mute_handList = ['Off', 'Right', 'Left']
         self.hand_colorList = ast.literal_eval(usersettings.get_setting_value("hand_colorList"))
+        
+        # Enhanced color settings
+        self.learn_colors = self._load_enhanced_colors()
+        self.flying_notes_settings = self._load_flying_notes_settings()
 
         self.song_tempo = 500000
         self.song_tracks = []
@@ -101,15 +88,120 @@ class LearnMIDI:
 
         self.mistakes_count = 0
         self.number_of_mistakes = int(usersettings.get_setting_value("number_of_mistakes"))
-        self.delay_countR = 0
-        self.delay_countL = 0
         self.awaiting_restart_loop = False
-        self.score_manager = ScoreManager()
-        self.right_hand_timing = []
-        self.left_hand_timing = []
-        self.right_hand_mistakes = []
-        self.left_hand_mistakes = []
 
+    def _load_enhanced_colors(self):
+        """Load enhanced color settings from user settings"""
+        try:
+            learn_colors = {
+                'left_hand': {
+                    'white_keys': {
+                        'current': ast.literal_eval(self.usersettings.get_setting_value("learn_colors/left_hand/white_keys/current")),
+                        'upcoming': ast.literal_eval(self.usersettings.get_setting_value("learn_colors/left_hand/white_keys/upcoming"))
+                    },
+                    'black_keys': {
+                        'current': ast.literal_eval(self.usersettings.get_setting_value("learn_colors/left_hand/black_keys/current")),
+                        'upcoming': ast.literal_eval(self.usersettings.get_setting_value("learn_colors/left_hand/black_keys/upcoming"))
+                    }
+                },
+                'right_hand': {
+                    'white_keys': {
+                        'current': ast.literal_eval(self.usersettings.get_setting_value("learn_colors/right_hand/white_keys/current")),
+                        'upcoming': ast.literal_eval(self.usersettings.get_setting_value("learn_colors/right_hand/white_keys/upcoming"))
+                    },
+                    'black_keys': {
+                        'current': ast.literal_eval(self.usersettings.get_setting_value("learn_colors/right_hand/black_keys/current")),
+                        'upcoming': ast.literal_eval(self.usersettings.get_setting_value("learn_colors/right_hand/black_keys/upcoming"))
+                    }
+                }
+            }
+            return learn_colors
+        except Exception as e:
+            logger.warning(f"Failed to load enhanced colors, using defaults: {e}")
+            # Return default colors if loading fails
+            return {
+                'left_hand': {
+                    'white_keys': {'current': [0, 255, 0], 'upcoming': [0, 128, 0]},
+                    'black_keys': {'current': [0, 200, 0], 'upcoming': [0, 100, 0]}
+                },
+                'right_hand': {
+                    'white_keys': {'current': [0, 0, 255], 'upcoming': [0, 0, 128]},
+                    'black_keys': {'current': [0, 0, 200], 'upcoming': [0, 0, 100]}
+                }
+            }
+
+    def _load_flying_notes_settings(self):
+        """Load flying notes settings from user settings"""
+        try:
+            return {
+                'enabled': int(self.usersettings.get_setting_value("flying_notes/enabled")),
+                'speed': float(self.usersettings.get_setting_value("flying_notes/speed")),
+                'note_height': int(self.usersettings.get_setting_value("flying_notes/note_height")),
+                'keyboard_height': int(self.usersettings.get_setting_value("flying_notes/keyboard_height")),
+                'show_measures': int(self.usersettings.get_setting_value("flying_notes/show_measures")),
+                'animation_smoothness': int(self.usersettings.get_setting_value("flying_notes/animation_smoothness"))
+            }
+        except Exception as e:
+            logger.warning(f"Failed to load flying notes settings, using defaults: {e}")
+            return {
+                'enabled': 0,
+                'speed': 1.0,
+                'note_height': 20,
+                'keyboard_height': 80,
+                'show_measures': 1,
+                'animation_smoothness': 60
+            }
+
+    def get_note_type(self, note):
+        """Determine if note is white or black key"""
+        # MIDI note numbers: C=0, C#=1, D=2, D#=3, E=4, F=5, F#=6, G=7, G#=8, A=9, A#=10, B=11
+        # Black keys are: C#, D#, F#, G#, A# (1, 3, 6, 8, 10)
+        note_in_octave = note % 12
+        return 'black' if note_in_octave in [1, 3, 6, 8, 10] else 'white'
+    
+    def get_note_type_from_position(self, position):
+        """Determine note type from LED position by converting back to MIDI note"""
+        # Convert LED position back to MIDI note number
+        # This is a reverse of the get_note_position function
+        note = position + self.ledsettings.led_offset
+        return self.get_note_type(note)
+
+    def get_learn_color(self, hand, note_type, is_upcoming=False):
+        """Get color based on hand, note type, and timing"""
+        hand_key = 'left_hand' if hand == 'left' else 'right_hand'
+        note_key = 'white_keys' if note_type == 'white' else 'black_keys'
+        timing_key = 'upcoming' if is_upcoming else 'current'
+        
+        try:
+            return self.learn_colors[hand_key][note_key][timing_key]
+        except KeyError:
+            # Fallback to original color system
+            if hand == 'left':
+                return self.hand_colorList[self.hand_colorL]
+            else:
+                return self.hand_colorList[self.hand_colorR]
+
+    def light_up_enhanced_notes(self, notes, is_upcoming=False):
+        """Enhanced note lighting with new color system"""
+        brightness = 0.5
+        if is_upcoming:
+            brightness /= 10  # Dim upcoming notes
+            
+        for msg in notes:
+            if not msg.is_meta and (msg.type == 'note_on' or msg.type == 'note_off'):
+                note_position = get_note_position(msg.note, self.ledstrip, self.ledsettings)
+                note_type = self.get_note_type(msg.note)
+                
+                # Determine hand based on channel
+                hand = 'right' if msg.channel == 1 else 'left'
+                
+                # Get enhanced color
+                color = self.get_learn_color(hand, note_type, is_upcoming)
+                red, green, blue = [int(c * brightness) for c in color]
+                
+                self.ledstrip.strip.setPixelColor(note_position, Color(red, green, blue))
+        
+        self.ledstrip.strip.show()
 
     def add_instance(self, menu):
         self.menu = menu
@@ -180,6 +272,10 @@ class LearnMIDI:
             self.hand_colorL += value
             self.hand_colorL = clamp(self.hand_colorL, 0, len(self.hand_colorList) - 1)
             self.usersettings.change_setting_value("hand_colorL", self.hand_colorL)
+
+    def reload_enhanced_colors(self):
+        """Reload enhanced color settings from user settings"""
+        self.learn_colors = self._load_enhanced_colors()
 
     def load_song_from_cache(self, song_path):
         # Load song from cache
@@ -287,30 +383,8 @@ class LearnMIDI:
             current_note += 1
 
     def light_up_predicted_future_notes(self, notes):
-        dim = 10
-        for msg in notes:
-            # Light-up LEDs with the notes to press
-            if not msg.is_meta:
-                # Calculate note position on the strip and display
-                if msg.type == 'note_on' or msg.type == 'note_off':
-                    note_position = get_note_position(msg.note, self.ledstrip, self.ledsettings)
-
-                    brightness = 0.5
-                    brightness /= dim
-                    red, green, blue = [0, 0, 0]
-                    if msg.channel == 1:
-                        # red = int(self.hand_colorList[self.hand_colorR][0] * brightness)
-                        # green = int(self.hand_colorList[self.hand_colorR][1] * brightness)
-                        # blue = int(self.hand_colorList[self.hand_colorR][2] * brightness)
-                        red, green, blue = [int(c * brightness) for c in self.hand_colorList[self.hand_colorR]]
-                    if msg.channel == 2:
-                        # red = int(self.hand_colorList[self.hand_colorL][0] * brightness)
-                        # green = int(self.hand_colorList[self.hand_colorL][1] * brightness)
-                        # blue = int(self.hand_colorList[self.hand_colorL][2] * brightness)
-                        red, green, blue = [int(c * brightness) for c in self.hand_colorList[self.hand_colorL]]
-
-                    self.ledstrip.strip.setPixelColor(note_position, Color(red, green, blue))
-                    self.ledstrip.strip.show()
+        """Light up future notes using enhanced color system"""
+        self.light_up_enhanced_notes(notes, is_upcoming=True)
 
     def handle_wrong_notes(self, wrong_notes, hand_hint_notesL, hand_hint_notesR):
 
@@ -333,26 +407,18 @@ class LearnMIDI:
                 self.mistakes_count += 1
                 if self.is_led_activeL == 0:
                     for expected_note in hand_hint_notesL:
-                        red, green, blue = [int(c * brightness) for c in self.hand_colorList[self.prev_hand_colorL]]
+                        # Use enhanced color system for left hand
+                        note_type = self.get_note_type_from_position(expected_note)
+                        color = self.get_learn_color('left', note_type, is_upcoming=False)
+                        red, green, blue = [int(c * brightness) for c in color]
                         self.ledstrip.strip.setPixelColor(expected_note, Color(red, green, blue))
                 if self.is_led_activeR == 0:
                     for expected_note in hand_hint_notesR:
-                        red, green, blue = [int(c * brightness) for c in self.hand_colorList[self.prev_hand_colorR]]
+                        # Use enhanced color system for right hand
+                        note_type = self.get_note_type_from_position(expected_note)
+                        color = self.get_learn_color('right', note_type, is_upcoming=False)
+                        red, green, blue = [int(c * brightness) for c in color]
                         self.ledstrip.strip.setPixelColor(expected_note, Color(red, green, blue))
-                 
-                # Wrong note penalty
-                self.score_manager.penalize_for_wrong_note()
-                score_logger.debug("wrong note - score:" +str(self.score_manager.get_score()))
-                score_logger.debug("panelty:" +str(self.score_manager.get_last_score_update()))
-
-                # # Send score update to frontend
-                self.socket_send.append(json.dumps({
-                    "type": "score_update",
-                    "score": self.score_manager.get_score(),
-                    "combo": self.score_manager.get_combo(),
-                    "multiplier": self.score_manager.get_multiplier(),
-                    "last_update": self.score_manager.get_last_score_update()
-                }))
             else:
                 self.ledstrip.strip.setPixelColor(note_position, Color(0, 0, 0))
 
@@ -376,25 +442,6 @@ class LearnMIDI:
                 time.sleep(0.1)
         if self.loading == 4:
             self.is_started_midi = True  # Prevent restarting the Thread
-            # Reset the score when starting a new learning session
-            self.score_manager.reset()
-            self.right_hand_timing.clear()
-            self.left_hand_timing.clear()
-            self.right_hand_mistakes.clear()
-            self.left_hand_mistakes.clear()
-            midi_time = 0
-            self.delay_countR = 0
-            self.delay_countL = 0
-            score_logger.debug("score reset" +str(self.score_manager.get_score()))
-                  
-            # Send score update to frontend
-            self.socket_send.append(json.dumps({
-                "type": "score_update",
-                "score": self.score_manager.get_score(),
-                "combo": self.score_manager.get_combo(),
-                "multiplier": self.score_manager.get_multiplier(),
-                "last_update": 0 # Reset last update as well
-            }))
         elif self.loading == 5:
             self.is_started_midi = False  # Allow restarting the Thread
             return
@@ -406,23 +453,6 @@ class LearnMIDI:
         keep_looping = True
         while keep_looping:
             time.sleep(1)
-            self.score_manager.reset()
-            self.right_hand_timing.clear()
-            self.left_hand_timing.clear()
-            self.right_hand_mistakes.clear()
-            self.left_hand_mistakes.clear()
-            self.delay_countR = 0
-            self.delay_countL = 0
-            midi_time = 0
-            score_logger.debug("midi_time  - reset" +str(midi_time))
-            score_logger.debug("score reset keep looping" +str(self.score_manager.get_score()))
-            self.socket_send.append(json.dumps({
-                "type": "score_update",
-                "score": self.score_manager.get_score(),
-                "combo": self.score_manager.get_combo(),
-                "multiplier": self.score_manager.get_multiplier(),
-                "last_update": 0
-            }))
             try:
                 fastColorWipe(self.ledstrip.strip, True, self.ledsettings)
                 time_prev = time.time()
@@ -464,7 +494,6 @@ class LearnMIDI:
                             # Store timing information for next note
                             self.next_note_time = time.time() + tDelay
                             self.next_note_delay = tDelay
-                            midi_time += tDelay
 
                             while not set(notes_to_press).issubset(notes_pressed) and self.is_started_midi:
                                 if self.awaiting_restart_loop:
@@ -481,61 +510,17 @@ class LearnMIDI:
                                     else:
                                         velocity = int(find_between(str(msg_in), "velocity=", " "))
 
-                                    # check if note is NOT in the list of notes to press
+                                    # check if note is in the list of notes to press
                                     if note not in notes_to_press:
                                         wrong_notes.append(msg_in)
                                         # Clear pending software notes if wrong key is pressed
                                         if velocity > 0:
-                                            if msg.channel == 1:
-                                                self.right_hand_mistakes.append(midi_time)
-                                                score_logger.debug("right hand mistakes: %s", self.right_hand_mistakes)
-                                            if msg.channel == 2:
-                                                self.left_hand_mistakes.append(midi_time)
-                                                score_logger.debug("left hand mistakes: %s", self.left_hand_mistakes)
                                             self.pending_software_notes.clear()
                                         continue
-                                    
-                                    # check if note is in the list of notes to press
+
                                     if velocity > 0:
                                         if note not in notes_pressed:
                                             notes_pressed.append(note)
- 
-                                            # Calculate delay from ideal hit time
-                                            current_time = time.time()
-                                            if self.next_note_time:
-                                                # Get delay in seconds
-                                                delay = current_time - self.next_note_time
-                                                
-                                                # Add score for correct note
-                                                self.score_manager.add_score_for_correct_note(delay)
-
-                                                note_timing = (midi_time, delay)
-                                               
-                                                score_logger.debug("midi_time" +str(midi_time))
-                                                if msg.channel == 1: 
-                                                    score_logger.debug("channel 1")
-                                                    score_logger.debug("right hand timing note timimg: %s", self.right_hand_timing)
-                                                    self.right_hand_timing.append(note_timing)
-                                                    if delay >= self.score_manager.max_delay:
-                                                        self.delay_countR += 1
-                                                if msg.channel == 2:
-                                                    score_logger.debug("channel- 2")
-                                                    score_logger.debug("left hand timing note timimg: %s", self.left_hand_timing)
-                                                    self.left_hand_timing.append(note_timing)
-                                                    if delay >= self.score_manager.max_delay:
-                                                        self.delay_countR += 1
-
-                                                # send score update to frontend
-                                                self.socket_send.append(json.dumps({
-                                                    "type": "score_update",
-                                                    "score": self.score_manager.get_score(),
-                                                    "combo": self.score_manager.get_combo(),
-                                                    "multiplier": self.score_manager.get_multiplier(),
-                                                    "last_update": self.score_manager.get_last_score_update()
-                                                }))
-
-
-
                                     else:
                                         try:
                                             notes_pressed.remove(note)
@@ -578,27 +563,29 @@ class LearnMIDI:
                             else:
                                 brightness = 0.5
 
-                            red, green, blue = [0, 0, 0]
-                            if msg.channel == 1:
-                                red, green, blue = [int(c * brightness) for c in self.hand_colorList[self.hand_colorR]]
-                                if self.is_led_activeR == 0:
-                                    if brightness > 0:
-                                        hand_hint_notesR.append(note_position)
-                                    else:
-                                        try:
-                                            hand_hint_notesR.remove(note_position)
-                                        except ValueError:
-                                            pass  # do nothing
-                            if msg.channel == 2:
-                                red, green, blue = [int(c * brightness) for c in self.hand_colorList[self.hand_colorL]]
-                                if self.is_led_activeL == 0:
-                                    if brightness > 0:
-                                        hand_hint_notesL.append(note_position)
-                                    else:
-                                        try:
-                                            hand_hint_notesL.remove(note_position)
-                                        except ValueError:
-                                            pass  # do nothing
+                            # Use enhanced color system
+                            note_type = self.get_note_type(msg.note)
+                            hand = 'right' if msg.channel == 1 else 'left'
+                            color = self.get_learn_color(hand, note_type, is_upcoming=False)
+                            red, green, blue = [int(c * brightness) for c in color]
+                            
+                            # Handle LED activity settings
+                            if msg.channel == 1 and self.is_led_activeR == 0:
+                                if brightness > 0:
+                                    hand_hint_notesR.append(note_position)
+                                else:
+                                    try:
+                                        hand_hint_notesR.remove(note_position)
+                                    except ValueError:
+                                        pass  # do nothing
+                            elif msg.channel == 2 and self.is_led_activeL == 0:
+                                if brightness > 0:
+                                    hand_hint_notesL.append(note_position)
+                                else:
+                                    try:
+                                        hand_hint_notesL.remove(note_position)
+                                    except ValueError:
+                                        pass  # do nothing
                             self.ledstrip.strip.setPixelColor(note_position, Color(red, green, blue))
                             self.ledstrip.strip.show()
                         # Save notes to press
@@ -650,34 +637,6 @@ class LearnMIDI:
             if not self.is_loop_active or self.is_started_midi is False:
                 keep_looping = False
 
-            # Send session summary data
-            if not keep_looping:
-                try:
-                    # Get actual RGB colors
-                    color_r_rgb = self.hand_colorList[self.hand_colorR]
-                    color_l_rgb = self.hand_colorList[self.hand_colorL]
-
-                    summary_data = {
-                        "type": "session_summary",
-                        # Basic stats
-                        "delay_r": self.delay_countR,
-                        "delay_l": self.delay_countL,
-                        "mistakes_r_count": len(self.right_hand_mistakes),
-                        "mistakes_l_count": len(self.left_hand_mistakes),
-                        # Data for graph
-                        "timing_r": self.right_hand_timing,
-                        "timing_l": self.left_hand_timing,
-                        "mistakes_r_times": self.right_hand_mistakes,
-                        "mistakes_l_times": self.left_hand_mistakes,
-                        "max_delay": self.score_manager.max_delay,
-                        "color_r": f'rgb({color_r_rgb[0]}, {color_r_rgb[1]}, {color_r_rgb[2]})',
-                        "color_l": f'rgb({color_l_rgb[0]}, {color_l_rgb[1]}, {color_l_rgb[2]})'
-                    }
-                    self.socket_send.append(json.dumps(summary_data))
-                    score_logger.info(f"Sent session summary (length: {len(json.dumps(summary_data))})") # Log length for debugging if needed
-                except Exception as e:
-                    score_logger.error(f"Error preparing/sending session summary: {e}")
-
     def convert_midi_to_abc(self, midi_file):
         if not os.path.isfile('Songs/' + midi_file.replace(".mid", ".abc")):
             # subprocess.call(['midi2abc',  'Songs/' + midi_file, '-o', 'Songs/' + midi_file.replace(".mid", ".abc")])
@@ -689,4 +648,4 @@ class LearnMIDI:
                 if 'No such file or directory' in str(e):
                     logger.info("midi2abc not found")
         else:
-            logger.info("file already converted")
+            logger.info("file already converted")
