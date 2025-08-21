@@ -1,4 +1,9 @@
-from rpi_ws281x import Color
+try:
+    from rpi_ws281x import Color
+except ImportError:
+    # Fallback for when rpi_ws281x is not available
+    def Color(red, green, blue):
+        return (red << 16) | (green << 8) | blue
 
 
 class LEDEffectsProcessor:

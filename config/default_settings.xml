@@ -113,6 +113,40 @@
 	<hand_colorL>1</hand_colorL>
 	<prev_hand_colorR>0</prev_hand_colorR>
 	<prev_hand_colorL>1</prev_hand_colorL>
+
+	<!-- Enhanced Learn Color Settings -->
+	<learn_colors>
+		<left_hand>
+			<white_keys>
+				<current>[0, 255, 0]</current>
+				<upcoming>[0, 128, 0]</upcoming>
+			</white_keys>
+			<black_keys>
+				<current>[0, 200, 0]</current>
+				<upcoming>[0, 100, 0]</upcoming>
+			</black_keys>
+		</left_hand>
+		<right_hand>
+			<white_keys>
+				<current>[0, 0, 255]</current>
+				<upcoming>[0, 0, 128]</upcoming>
+			</white_keys>
+			<black_keys>
+				<current>[0, 0, 200]</current>
+				<upcoming>[0, 0, 100]</upcoming>
+			</black_keys>
+		</right_hand>
+	</learn_colors>
+
+	<!-- Flying Notes Settings -->
+	<flying_notes>
+		<enabled>0</enabled>
+		<speed>1.0</speed>
+		<note_height>20</note_height>
+		<keyboard_height>80</keyboard_height>
+		<show_measures>1</show_measures>
+		<animation_smoothness>60</animation_smoothness>
+	</flying_notes>
     <number_of_mistakes>0</number_of_mistakes>
 
     <show_wrong_notes>1</show_wrong_notes>
@@ -126,5 +160,13 @@
 	<led_gamma>1</led_gamma>
 
     <hotspot_password>visualizer</hotspot_password>
+
+    <!-- USB MIDI Gadget Settings -->
+    <usb_gadget_enabled>False</usb_gadget_enabled>
+    <usb_gadget_auto_enable>False</usb_gadget_auto_enable>
+    <usb_gadget_vendor_id>0x1d6b</usb_gadget_vendor_id>
+    <usb_gadget_product_id>0x0104</usb_gadget_product_id>
+    <usb_gadget_manufacturer>Piano LED Visualizer</usb_gadget_manufacturer>
+    <usb_gadget_product_name>Piano LED MIDI Device</usb_gadget_product_name>
 
 </settings>

@@ -31,16 +31,26 @@ class MenuLCD:
         self.hotspot = hotspot
         self.platform = platform
         self.args = args
-        font_dir = "/usr/share/fonts/truetype/freefont"
-        if args.fontdir is not None:
-            font_dir = args.fontdir
-        self.lcd_ttf = font_dir + "/FreeSansBold.ttf"
-        if not os.path.exists(self.lcd_ttf):
-            raise RuntimeError("Cannot locate font file: %s" % self.lcd_ttf)
+        import platform
+        if platform.system() == 'Windows':
+            # Use default font on Windows
+            font_dir = "."
+            self.lcd_ttf = None
+        else:
+            # Use Linux font path on other platforms
+            font_dir = "/usr/share/fonts/truetype/freefont"
+            if args.fontdir is not None:
+                font_dir = args.fontdir
+            self.lcd_ttf = font_dir + "/FreeSansBold.ttf"
+            if not os.path.exists(self.lcd_ttf):
+                raise RuntimeError("Cannot locate font file: %s" % self.lcd_ttf)
 
         if args.display == '1in3':
             self.LCD = LCD_1in3.LCD()
-            self.font = ImageFont.truetype(font_dir + '/FreeMonoBold.ttf', self.scale(10))
+            if self.lcd_ttf is not None:
+                self.font = ImageFont.truetype(font_dir + '/FreeMonoBold.ttf', self.scale(10))
+            else:
+                self.font = ImageFont.load_default()
             self.image = Image.open('webinterface/static/logo240_240.bmp')
         else:
             self.LCD = LCD_1in44.LCD()
@@ -86,6 +96,13 @@ class MenuLCD:
         self.last_activity = time.time()
         self.is_idle_animation_running = False
         self.is_animation_running = False
+
+    def get_font(self, size):
+        """Get appropriate font based on platform"""
+        if self.lcd_ttf is not None:
+            return ImageFont.truetype(self.lcd_ttf, size)
+        else:
+            return ImageFont.load_default()
 
     def rotate_image(self, image):
         if self.args.rotatescreen != "true":
@@ -793,12 +810,12 @@ class MenuLCD:
         top_offset = self.scale(2)
 
         if self.screensaver_settings["time"] == "1":
-            font_hour = ImageFont.truetype(self.lcd_ttf, self.scale(31))
+            font_hour = self.get_font(self.scale(31))
             self.draw.text((self.scale(4), top_offset), hour, fill=self.text_color, font=font_hour)
             top_offset += self.scale(31)
 
         if self.screensaver_settings["date"] == "1":
-            font_date = ImageFont.truetype(self.lcd_ttf, self.scale(13))
+            font_date = self.get_font(self.scale(13))
             self.draw.text((self.scale(34), top_offset), date, fill=self.text_color, font=font_date)
             top_offset += self.scale(13)
 
@@ -816,7 +833,7 @@ class MenuLCD:
         if info_height_font > self.scale(12):
             info_height_font = self.scale(12)
 
-        font = ImageFont.truetype(self.lcd_ttf, int(info_height_font))
+        font = self.get_font(int(info_height_font))
 
         if self.screensaver_settings["cpu"] == "1":
             self.draw.text((self.scale(1), top_offset), "CPU: " + str(cpu) + "% (" + str(cpu_average) + "%)",
@@ -836,8 +853,7 @@ class MenuLCD:
                 info_height_font_network = self.scale(11)
             else:
                 info_height_font_network = int(info_height_font)
-            font_network = ImageFont.truetype(self.lcd_ttf,
-                                              int(info_height_font_network))
+            font_network = self.get_font(int(info_height_font_network))
             self.draw.text((self.scale(1), top_offset),
                            "D:" + str("{:.2f}".format(download)) + "Mb/s U:" + str("{:.2f}".format(upload)) + "Mb/s",
                            fill=self.text_color, font=font_network)

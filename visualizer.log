@@ -1,0 +1,804 @@
+[2025-07-11 17:45:12] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:45:12] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:45:12] WARNING - Module spidev not found.
+[2025-07-11 17:45:12] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 15, in <module>
+    from lib.component_initializer import ComponentInitializer
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 4, in <module>
+    from lib import colormaps as cmap
+  File "H:\Piano-LED-Visualizer\lib\colormaps.py", line 1, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'
+[2025-07-11 17:45:58] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:45:58] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:45:58] WARNING - Module spidev not found.
+[2025-07-11 17:45:58] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 15, in <module>
+    from lib.component_initializer import ComponentInitializer
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 4, in <module>
+    from lib import colormaps as cmap
+  File "H:\Piano-LED-Visualizer\lib\colormaps.py", line 1, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'
+[2025-07-11 17:46:31] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:46:31] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:46:31] WARNING - Module spidev not found.
+[2025-07-11 17:46:31] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 15, in <module>
+    from lib.component_initializer import ComponentInitializer
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 5, in <module>
+    from lib.functions import startup_animation, fastColorWipe
+  File "H:\Piano-LED-Visualizer\lib\functions.py", line 6, in <module>
+    import psutil
+ModuleNotFoundError: No module named 'psutil'
+[2025-07-11 17:46:45] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:46:45] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:46:45] WARNING - Module spidev not found.
+[2025-07-11 17:46:45] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 15, in <module>
+    from lib.component_initializer import ComponentInitializer
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 10, in <module>
+    from lib.menulcd import MenuLCD
+  File "H:\Piano-LED-Visualizer\lib\menulcd.py", line 6, in <module>
+    import webcolors as wc
+ModuleNotFoundError: No module named 'webcolors'
+[2025-07-11 17:47:01] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:47:01] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:47:01] WARNING - Module spidev not found.
+[2025-07-11 17:47:01] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 18, in <module>
+    from lib.gpio_handler import GPIOHandler
+  File "H:\Piano-LED-Visualizer\lib\gpio_handler.py", line 3, in <module>
+    from RPi import GPIO
+ModuleNotFoundError: No module named 'RPi'
+[2025-07-11 17:47:30] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:47:30] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:47:30] WARNING - Module spidev not found.
+[2025-07-11 17:47:30] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 19, in <module>
+    from lib.led_effects_processor import LEDEffectsProcessor
+  File "H:\Piano-LED-Visualizer\lib\led_effects_processor.py", line 1, in <module>
+    from rpi_ws281x import Color
+ModuleNotFoundError: No module named 'rpi_ws281x'
+[2025-07-11 17:47:56] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:47:56] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:47:56] WARNING - Module spidev not found.
+[2025-07-11 17:47:57] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 23, in <module>
+    from lib.midi_event_processor import MIDIEventProcessor
+  File "H:\Piano-LED-Visualizer\lib\midi_event_processor.py", line 3, in <module>
+    from rpi_ws281x import Color
+ModuleNotFoundError: No module named 'rpi_ws281x'
+[2025-07-11 17:48:19] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:48:19] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:48:19] WARNING - Module spidev not found.
+[2025-07-11 17:48:19] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 25, in <module>
+    from lib.webinterface_manager import WebInterfaceManager
+  File "H:\Piano-LED-Visualizer\lib\webinterface_manager.py", line 5, in <module>
+    from waitress import serve
+ModuleNotFoundError: No module named 'waitress'
+[2025-07-11 17:48:34] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:48:34] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:48:34] WARNING - Module spidev not found.
+[2025-07-11 17:48:34] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 25, in <module>
+    from lib.webinterface_manager import WebInterfaceManager
+  File "H:\Piano-LED-Visualizer\lib\webinterface_manager.py", line 5, in <module>
+    from waitress import serve
+ModuleNotFoundError: No module named 'waitress'
+[2025-07-11 17:48:47] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:48:47] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:48:47] WARNING - Module spidev not found.
+[2025-07-11 17:48:47] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 25, in <module>
+    from lib.webinterface_manager import WebInterfaceManager
+  File "H:\Piano-LED-Visualizer\lib\webinterface_manager.py", line 7, in <module>
+    import webinterface as web_mod
+  File "H:\Piano-LED-Visualizer\webinterface\__init__.py", line 3, in <module>
+    import websockets
+ModuleNotFoundError: No module named 'websockets'
+[2025-07-11 17:49:02] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:49:02] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:49:02] WARNING - Module spidev not found.
+[2025-07-11 17:49:03] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 17:49:11] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:49:11] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:49:11] WARNING - Module spidev not found.
+[2025-07-11 17:49:12] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 17:49:17] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:49:17] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:49:17] WARNING - Module spidev not found.
+[2025-07-11 17:49:18] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 17:49:18] WARNING - Can't load settings file, restoring defaults
+[2025-07-11 17:49:18] INFO - no play port
+[2025-07-11 17:49:18] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-11 17:49:18] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-11 17:49:18] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-11 17:49:18] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 17:49:18] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 216, in <module>
+    app = VisualizerApp()
+          ^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 48, in __init__
+    self.component_initializer = ComponentInitializer(self.args)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 26, in __init__
+    self.hotspot = Hotspot(self.platform)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\platform.py", line 19, in __init__
+    subprocess.run("sudo chmod a+rwxX -R /home/Piano-LED-Visualizer/", shell=True, check=True)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command 'sudo chmod a+rwxX -R /home/Piano-LED-Visualizer/' returned non-zero exit status 2147942405.
+[2025-07-11 17:49:40] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:49:40] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:49:40] WARNING - Module spidev not found.
+[2025-07-11 17:49:41] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 17:49:41] INFO - no play port
+[2025-07-11 17:49:41] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-11 17:49:41] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-11 17:49:41] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-11 17:49:41] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 17:49:41] INFO - Skipping Linux-specific chmod command on Windows platform
+[2025-07-11 17:49:41] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 216, in <module>
+    app = VisualizerApp()
+          ^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 48, in __init__
+    self.component_initializer = ComponentInitializer(self.args)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 28, in __init__
+    self.menu = MenuLCD("config/menu.xml", self.args, self.usersettings, self.ledsettings,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\menulcd.py", line 39, in __init__
+    raise RuntimeError("Cannot locate font file: %s" % self.lcd_ttf)
+RuntimeError: Cannot locate font file: /usr/share/fonts/truetype/freefont/FreeSansBold.ttf
+[2025-07-11 17:51:39] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 17:51:39] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 17:51:39] WARNING - Module spidev not found.
+[2025-07-11 17:51:40] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 17:51:40] INFO - no play port
+[2025-07-11 17:51:40] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-11 17:51:40] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-11 17:51:40] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-11 17:51:40] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 17:51:40] INFO - Skipping Linux-specific chmod command on Windows platform
+[2025-07-11 17:51:40] INFO - connectall.py script is outdated, updating...
+[2025-07-11 17:51:40] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 216, in <module>
+    app = VisualizerApp()
+          ^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 48, in __init__
+    self.component_initializer = ComponentInitializer(self.args)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 31, in __init__
+    self.setup_components()
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 35, in setup_components
+    self.platform.copy_connectall_script()
+  File "H:\Piano-LED-Visualizer\lib\platform.py", line 65, in copy_connectall_script
+    copyfile('lib/connectall.py', '/usr/local/bin/connectall.py')
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 258, in copyfile
+    with open(dst, 'wb') as fdst:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/usr/local/bin/connectall.py'
+[2025-07-11 18:02:38] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:02:38] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:02:38] WARNING - Module spidev not found.
+[2025-07-11 18:02:38] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 15, in <module>
+    from lib.component_initializer import ComponentInitializer
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 5, in <module>
+    from lib.functions import startup_animation, fastColorWipe
+  File "H:\Piano-LED-Visualizer\lib\functions.py", line 4, in <module>
+    import mido
+ModuleNotFoundError: No module named 'mido'
+[2025-07-11 18:07:27] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:07:27] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:07:27] WARNING - Module spidev not found.
+[2025-07-11 18:07:27] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 15, in <module>
+    from lib.component_initializer import ComponentInitializer
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 5, in <module>
+    from lib.functions import startup_animation, fastColorWipe
+  File "H:\Piano-LED-Visualizer\lib\functions.py", line 4, in <module>
+    import mido
+ModuleNotFoundError: No module named 'mido'
+[2025-07-11 18:07:56] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:07:56] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:07:56] WARNING - Module spidev not found.
+[2025-07-11 18:07:56] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 15, in <module>
+    from lib.component_initializer import ComponentInitializer
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 5, in <module>
+    from lib.functions import startup_animation, fastColorWipe
+  File "H:\Piano-LED-Visualizer\lib\functions.py", line 4, in <module>
+    import mido
+ModuleNotFoundError: No module named 'mido'
+[2025-07-11 18:08:09] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:08:09] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:08:09] WARNING - Module spidev not found.
+[2025-07-11 18:08:10] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 15, in <module>
+    from lib.component_initializer import ComponentInitializer
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 5, in <module>
+    from lib.functions import startup_animation, fastColorWipe
+  File "H:\Piano-LED-Visualizer\lib\functions.py", line 4, in <module>
+    import mido
+ModuleNotFoundError: No module named 'mido'
+[2025-07-11 18:08:43] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:08:43] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:08:43] WARNING - Module spidev not found.
+[2025-07-11 18:08:44] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 18, in <module>
+    from lib.gpio_handler import GPIOHandler
+  File "H:\Piano-LED-Visualizer\lib\gpio_handler.py", line 2, in <module>
+    from RPi import GPIO
+ModuleNotFoundError: No module named 'RPi'
+[2025-07-11 18:09:01] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:09:01] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:09:01] WARNING - Module spidev not found.
+[2025-07-11 18:09:01] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 19, in <module>
+    from lib.led_effects_processor import LEDEffectsProcessor
+  File "H:\Piano-LED-Visualizer\lib\led_effects_processor.py", line 1, in <module>
+    from rpi_ws281x import Color
+ModuleNotFoundError: No module named 'rpi_ws281x'
+[2025-07-11 18:09:17] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:09:17] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:09:17] WARNING - Module spidev not found.
+[2025-07-11 18:09:17] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 23, in <module>
+    from lib.midi_event_processor import MIDIEventProcessor
+  File "H:\Piano-LED-Visualizer\lib\midi_event_processor.py", line 3, in <module>
+    from rpi_ws281x import Color
+ModuleNotFoundError: No module named 'rpi_ws281x'
+[2025-07-11 18:09:32] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:09:32] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:09:32] WARNING - Module spidev not found.
+[2025-07-11 18:09:33] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 18:09:33] INFO - Playport set to Microsoft GS Wavetable Synth 0
+[2025-07-11 18:09:33] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-11 18:09:33] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-11 18:09:33] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-11 18:09:33] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 18:09:33] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 216, in <module>
+    app = VisualizerApp()
+          ^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 48, in __init__
+    self.component_initializer = ComponentInitializer(self.args)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 26, in __init__
+    self.hotspot = Hotspot(self.platform)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\platform.py", line 20, in __init__
+    subprocess.run("sudo chmod a+rwxX -R /home/Piano-LED-Visualizer/", shell=True, check=True)
+  File "C:\Users\TheZet\.pyenv\pyenv-win\versions\3.12.10\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command 'sudo chmod a+rwxX -R /home/Piano-LED-Visualizer/' returned non-zero exit status 2147942405.
+[2025-07-11 18:09:56] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:09:56] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:09:56] WARNING - Module spidev not found.
+[2025-07-11 18:09:57] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 18:09:57] INFO - Playport set to Microsoft GS Wavetable Synth 0
+[2025-07-11 18:09:57] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-11 18:09:57] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-11 18:09:57] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-11 18:09:57] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 18:09:57] INFO - connectall.py script is outdated, updating...
+[2025-07-11 18:09:57] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 216, in <module>
+    app = VisualizerApp()
+          ^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 48, in __init__
+    self.component_initializer = ComponentInitializer(self.args)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 31, in __init__
+    self.setup_components()
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 35, in setup_components
+    self.platform.copy_connectall_script()
+  File "H:\Piano-LED-Visualizer\lib\platform.py", line 63, in copy_connectall_script
+    copyfile('lib/connectall.py', '/usr/local/bin/connectall.py')
+  File "C:\Users\TheZet\.pyenv\pyenv-win\versions\3.12.10\Lib\shutil.py", line 262, in copyfile
+    with open(dst, 'wb') as fdst:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/usr/local/bin/connectall.py'
+[2025-07-11 18:10:11] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:10:11] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:10:11] WARNING - Module spidev not found.
+[2025-07-11 18:10:11] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 18:10:11] INFO - Playport set to Microsoft GS Wavetable Synth 0
+[2025-07-11 18:10:11] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-11 18:10:11] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-11 18:10:11] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-11 18:10:11] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 18:10:12] INFO - Skipping connectall.py script copy on Windows
+[2025-07-11 18:10:12] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 216, in <module>
+    app = VisualizerApp()
+          ^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 48, in __init__
+    self.component_initializer = ComponentInitializer(self.args)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 31, in __init__
+    self.setup_components()
+  File "H:\Piano-LED-Visualizer\lib\component_initializer.py", line 37, in setup_components
+    self.platform.install_midi2abc()
+  File "H:\Piano-LED-Visualizer\lib\platform.py", line 72, in install_midi2abc
+    if not self.is_package_installed("abcmidi"):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\platform.py", line 106, in is_package_installed
+    result = subprocess.run(['dpkg', '-s', package_name], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TheZet\.pyenv\pyenv-win\versions\3.12.10\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TheZet\.pyenv\pyenv-win\versions\3.12.10\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\TheZet\.pyenv\pyenv-win\versions\3.12.10\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+[2025-07-11 18:10:23] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:10:23] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:10:23] WARNING - Module spidev not found.
+[2025-07-11 18:10:23] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 18:10:23] INFO - Playport set to Microsoft GS Wavetable Synth 0
+[2025-07-11 18:10:23] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-11 18:10:23] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-11 18:10:23] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-11 18:10:23] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 18:10:24] INFO - Skipping connectall.py script copy on Windows
+[2025-07-11 18:10:24] INFO - Skipping abcmidi installation on Windows
+[2025-07-11 18:10:24] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-11 18:10:24] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-11 18:10:24] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-11 18:10:24] INFO - Starting webinterface
+[2025-07-11 18:10:24] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 18:10:24] INFO - Flying notes components initialized successfully
+[2025-07-11 18:10:24] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-11 18:10:24] INFO - Creating new Hotspot profile...
+[2025-07-11 18:10:24] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-11 18:10:24] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-11 18:10:24] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-11 18:10:24] INFO - Enabling Hotspot
+[2025-07-11 18:10:29] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-11 18:10:29] WARNING - Failed to start hotspot
+[2025-07-11 18:20:26] WARNING - Error while getting ports 'NoneType' object has no attribute 'poll'
+[2025-07-11 18:20:39] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 217, in <module>
+    app.run()
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 119, in run
+    self.check_screensaver()
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 154, in check_screensaver
+    screensaver(self.component_initializer.menu, self.component_initializer.midiports,
+  File "H:\Piano-LED-Visualizer\lib\functions.py", line 294, in screensaver
+    time.sleep(delay)
+KeyboardInterrupt
+[2025-07-11 18:20:40] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:20:40] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:20:40] WARNING - Module spidev not found.
+[2025-07-11 18:20:40] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 18, in <module>
+    from lib.gpio_handler import GPIOHandler
+  File "H:\Piano-LED-Visualizer\lib\gpio_handler.py", line 2, in <module>
+    import RPi.GPIO as GPIO
+ModuleNotFoundError: No module named 'RPi'
+[2025-07-11 18:20:52] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:20:52] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:20:52] WARNING - Module spidev not found.
+[2025-07-11 18:20:53] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 18:20:53] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-11 18:20:53] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-11 18:20:53] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-11 18:20:53] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-11 18:20:53] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 18:20:54] INFO - Skipping connectall.py script copy on Windows
+[2025-07-11 18:20:54] INFO - Skipping abcmidi installation on Windows
+[2025-07-11 18:20:54] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-11 18:20:54] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-11 18:20:54] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-11 18:20:54] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 216, in <module>
+    app = VisualizerApp()
+          ^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 57, in __init__
+    self.gpio_handler = GPIOHandler(self.args, self.component_initializer.midiports, self.component_initializer.menu,
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\Piano-LED-Visualizer\lib\gpio_handler.py", line 46, in __init__
+    self.setup_gpio()
+  File "H:\Piano-LED-Visualizer\lib\gpio_handler.py", line 69, in setup_gpio
+    GPIO.setup(self.KEYRIGHT, GPIO.IN, GPIO.PUD_UP)
+                                       ^^^^^^^^^^^
+AttributeError: 'MockGPIO' object has no attribute 'PUD_UP'
+[2025-07-11 18:21:08] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:21:08] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:21:08] WARNING - Module spidev not found.
+[2025-07-11 18:21:08] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 18, in <module>
+    from lib.gpio_handler import GPIOHandler
+  File "H:\Piano-LED-Visualizer\lib\gpio_handler.py", line 15
+    @staticmethod
+                 ^
+IndentationError: unindent does not match any outer indentation level
+[2025-07-11 18:21:22] WARNING - RPi GPIO failed, using null driver.
+[2025-07-11 18:21:22] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-11 18:21:22] WARNING - Module spidev not found.
+[2025-07-11 18:21:22] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-11 18:21:23] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-11 18:21:23] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-11 18:21:23] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-11 18:21:23] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-11 18:21:23] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 18:21:23] INFO - Skipping connectall.py script copy on Windows
+[2025-07-11 18:21:23] INFO - Skipping abcmidi installation on Windows
+[2025-07-11 18:21:23] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-11 18:21:23] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-11 18:21:23] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-11 18:21:23] INFO - Starting webinterface
+[2025-07-11 18:21:23] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 18:21:23] INFO - Flying notes components initialized successfully
+[2025-07-11 18:21:23] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-11 18:21:23] INFO - Creating new Hotspot profile...
+[2025-07-11 18:21:23] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-11 18:21:23] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-11 18:21:23] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-11 18:21:23] INFO - Enabling Hotspot
+[2025-07-11 18:21:28] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-11 18:21:28] WARNING - Failed to start hotspot
+[2025-07-12 20:14:48] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 20:14:48] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 20:14:48] WARNING - Module spidev not found.
+[2025-07-12 20:14:48] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 20:14:49] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 20:14:49] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 20:14:49] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 20:14:49] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 20:14:49] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 20:14:49] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 20:14:49] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 20:14:49] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 20:14:49] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 20:14:49] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 20:14:49] INFO - Starting webinterface
+[2025-07-12 20:14:49] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 20:14:49] INFO - Flying notes components initialized successfully
+[2025-07-12 20:14:49] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 20:14:49] INFO - Creating new Hotspot profile...
+[2025-07-12 20:14:49] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 20:14:49] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 20:14:49] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 20:14:49] INFO - Enabling Hotspot
+[2025-07-12 20:14:54] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 20:14:54] WARNING - Failed to start hotspot
+[2025-07-12 20:20:24] INFO - WebSocket client connected: 2020046730016
+[2025-07-12 20:21:54] INFO - WebSocket client disconnected: 2020046730016
+[2025-07-12 20:23:13] INFO - WebSocket client connected: 2020046730016
+[2025-07-12 20:23:27] ERROR - Failed to start animation: Server.emit() got an unexpected keyword argument 'broadcast'
+[2025-07-12 20:23:42] INFO - WebSocket client disconnected: 2020046730016
+[2025-07-12 20:54:49] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 20:54:49] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 20:54:49] WARNING - Module spidev not found.
+[2025-07-12 20:54:50] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 20:54:50] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 20:54:50] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 20:54:50] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 20:54:50] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 20:54:50] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 20:54:50] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 20:54:50] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 20:54:50] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 20:54:51] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 20:54:51] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 20:54:51] INFO - Starting webinterface
+[2025-07-12 20:54:51] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 20:54:51] INFO - Flying notes components initialized successfully
+[2025-07-12 20:54:51] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 20:54:51] INFO - Creating new Hotspot profile...
+[2025-07-12 20:54:51] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 20:54:51] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 20:54:51] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 20:54:51] INFO - Enabling Hotspot
+[2025-07-12 20:54:56] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 20:54:56] WARNING - Failed to start hotspot
+[2025-07-12 21:06:55] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 21:06:55] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 21:06:55] WARNING - Module spidev not found.
+[2025-07-12 21:06:55] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 21:06:55] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 21:06:55] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 21:06:55] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 21:06:55] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 21:06:55] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:06:56] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 21:06:56] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 21:06:56] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 21:06:56] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 21:06:56] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 21:06:56] INFO - Starting webinterface
+[2025-07-12 21:06:56] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:06:56] INFO - Flying notes components initialized successfully
+[2025-07-12 21:06:56] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 21:06:56] INFO - Creating new Hotspot profile...
+[2025-07-12 21:06:56] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 21:06:56] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:06:56] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 21:06:56] INFO - Enabling Hotspot
+[2025-07-12 21:07:01] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:07:01] WARNING - Failed to start hotspot
+[2025-07-12 21:28:56] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 21:28:56] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 21:28:56] WARNING - Module spidev not found.
+[2025-07-12 21:28:56] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 21:28:57] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 21:28:57] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 21:28:57] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 21:28:57] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 21:28:57] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:28:57] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 21:28:57] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 21:28:57] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 21:28:57] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 21:28:57] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 21:28:57] INFO - Starting webinterface
+[2025-07-12 21:28:57] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:28:57] INFO - Flying notes components initialized successfully
+[2025-07-12 21:28:57] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 21:28:57] INFO - Creating new Hotspot profile...
+[2025-07-12 21:28:57] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 21:28:57] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:28:57] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 21:28:57] INFO - Enabling Hotspot
+[2025-07-12 21:29:02] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:29:02] WARNING - Failed to start hotspot
+[2025-07-12 21:30:48] WARNING - WebSocket handler error: 'ServerConnection' object has no attribute 'path'
+[2025-07-12 21:32:14] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 21:32:14] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 21:32:14] WARNING - Module spidev not found.
+[2025-07-12 21:32:14] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 21:32:14] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 21:32:14] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 21:32:14] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 21:32:14] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 21:32:14] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:32:15] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 21:32:15] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 21:32:15] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 21:32:15] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 21:32:15] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 21:32:15] INFO - Starting webinterface
+[2025-07-12 21:32:15] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:32:15] INFO - Flying notes components initialized successfully
+[2025-07-12 21:32:15] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 21:32:15] INFO - Creating new Hotspot profile...
+[2025-07-12 21:32:15] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 21:32:15] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:32:15] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 21:32:15] INFO - Enabling Hotspot
+[2025-07-12 21:32:20] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:32:20] WARNING - Failed to start hotspot
+[2025-07-12 21:32:37] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 21:32:37] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 21:32:37] WARNING - Module spidev not found.
+[2025-07-12 21:32:37] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 21:32:38] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 21:32:38] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 21:32:38] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 21:32:38] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 21:32:38] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:32:38] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 21:32:38] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 21:32:38] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 21:32:38] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 21:32:38] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 21:32:38] INFO - Starting webinterface
+[2025-07-12 21:32:38] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:32:38] INFO - Flying notes components initialized successfully
+[2025-07-12 21:32:38] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 21:32:38] INFO - Creating new Hotspot profile...
+[2025-07-12 21:32:38] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 21:32:38] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:32:38] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 21:32:38] INFO - Enabling Hotspot
+[2025-07-12 21:32:43] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:32:43] WARNING - Failed to start hotspot
+[2025-07-12 21:40:43] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 21:40:43] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 21:40:43] WARNING - Module spidev not found.
+[2025-07-12 21:40:44] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 21:40:44] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 21:40:44] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 21:40:44] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 21:40:44] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 21:40:44] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:40:45] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 21:40:45] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 21:40:45] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 21:40:45] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 21:40:45] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 21:40:45] INFO - Starting webinterface
+[2025-07-12 21:40:45] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:40:45] INFO - Flying notes components initialized successfully
+[2025-07-12 21:40:45] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 21:40:45] INFO - Creating new Hotspot profile...
+[2025-07-12 21:40:45] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 21:40:45] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:40:45] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 21:40:45] INFO - Enabling Hotspot
+[2025-07-12 21:40:50] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:40:50] WARNING - Failed to start hotspot
+[2025-07-12 21:42:33] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 21:42:33] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 21:42:33] WARNING - Module spidev not found.
+[2025-07-12 21:42:34] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 21:42:34] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 21:42:34] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 21:42:34] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 21:42:34] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 21:42:34] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:42:35] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 21:42:35] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 21:42:35] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 21:42:35] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 21:42:35] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 21:42:35] INFO - Starting webinterface
+[2025-07-12 21:42:35] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:42:35] INFO - Flying notes components initialized successfully
+[2025-07-12 21:42:35] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 21:42:35] INFO - Creating new Hotspot profile...
+[2025-07-12 21:42:35] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 21:42:35] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:42:35] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 21:42:35] INFO - Enabling Hotspot
+[2025-07-12 21:42:40] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:42:40] WARNING - Failed to start hotspot
+[2025-07-12 21:42:42] ERROR - Error getting USB gadget status: 'bool' object is not callable
+[2025-07-12 21:42:48] ERROR - Error checking prerequisites: [Errno 2] No such file or directory: '/proc/cpuinfo'
+[2025-07-12 21:42:52] ERROR - Error checking prerequisites: [Errno 2] No such file or directory: '/proc/cpuinfo'
+[2025-07-12 21:44:09] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 21:44:09] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 21:44:09] WARNING - Module spidev not found.
+[2025-07-12 21:44:09] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 21:44:09] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 21:44:09] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 21:44:09] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 21:44:09] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 21:44:09] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:44:10] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 21:44:10] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 21:44:10] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 21:44:10] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 21:44:10] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 21:44:10] INFO - Starting webinterface
+[2025-07-12 21:44:10] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:44:10] INFO - Flying notes components initialized successfully
+[2025-07-12 21:44:10] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 21:44:10] INFO - Creating new Hotspot profile...
+[2025-07-12 21:44:10] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 21:44:10] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:44:10] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 21:44:10] INFO - Enabling Hotspot
+[2025-07-12 21:44:15] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:44:15] WARNING - Failed to start hotspot
+[2025-07-12 21:45:22] ERROR - Unhandled Exception: 
+Traceback (most recent call last):
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 218, in <module>
+    app.run()
+  File "H:\Piano-LED-Visualizer\visualizer.py", line 130, in run
+    self.gpio_handler.process_gpio_keys()
+  File "H:\Piano-LED-Visualizer\lib\gpio_handler.py", line 85, in process_gpio_keys
+    time.sleep(0.001)
+KeyboardInterrupt
+[2025-07-12 21:45:23] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 21:45:23] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 21:45:23] WARNING - Module spidev not found.
+[2025-07-12 21:45:23] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 21:45:24] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 21:45:24] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 21:45:24] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 21:45:24] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 21:45:24] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:45:24] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 21:45:24] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 21:45:24] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 21:45:24] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 21:45:24] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 21:45:24] INFO - Starting webinterface
+[2025-07-12 21:45:24] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:45:24] INFO - Flying notes components initialized successfully
+[2025-07-12 21:45:24] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 21:45:24] INFO - Creating new Hotspot profile...
+[2025-07-12 21:45:24] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 21:45:24] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:45:24] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 21:45:24] INFO - Enabling Hotspot
+[2025-07-12 21:45:29] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:45:29] WARNING - Failed to start hotspot
+[2025-07-12 21:45:42] ERROR - Error getting USB gadget status: 'bool' object is not callable
+[2025-07-12 21:45:47] WARNING - USB gadget mode is only supported on Raspberry Pi hardware, not Windows
+[2025-07-12 21:46:24] ERROR - Error getting USB gadget status: 'bool' object is not callable
+[2025-07-12 21:47:14] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 21:47:14] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 21:47:14] WARNING - Module spidev not found.
+[2025-07-12 21:47:14] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 21:47:14] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 21:47:14] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 21:47:14] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 21:47:14] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 21:47:14] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:47:15] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 21:47:15] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 21:47:15] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 21:47:15] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 21:47:15] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 21:47:15] INFO - Starting webinterface
+[2025-07-12 21:47:15] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:47:15] INFO - Flying notes components initialized successfully
+[2025-07-12 21:47:15] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 21:47:15] INFO - Creating new Hotspot profile...
+[2025-07-12 21:47:15] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 21:47:15] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:47:15] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 21:47:15] INFO - Enabling Hotspot
+[2025-07-12 21:47:20] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:47:20] WARNING - Failed to start hotspot
+[2025-07-12 21:47:22] WARNING - USB gadget mode is only supported on Raspberry Pi hardware, not Windows
+[2025-07-12 21:47:31] WARNING - USB gadget mode is only supported on Raspberry Pi hardware, not Windows
+[2025-07-12 21:47:40] WARNING - USB gadget mode is only supported on Raspberry Pi hardware, not Windows
+[2025-07-12 21:49:11] WARNING - USB gadget mode is only supported on Raspberry Pi hardware, not Windows
+[2025-07-12 21:54:17] WARNING - RPi GPIO failed, using null driver.
+[2025-07-12 21:54:17] WARNING - Module rpi_ws281x not found, using null driver.
+[2025-07-12 21:54:17] WARNING - Module spidev not found.
+[2025-07-12 21:54:17] INFO - [ensure_singleton] Singleton check skipped on Windows platform
+[2025-07-12 21:54:17] INFO - Playport loaded and set to Microsoft GS Wavetable Synth 0
+[2025-07-12 21:54:17] WARNING - 'NoneType' object has no attribute 'WS2811_STRIP_GRB'
+[2025-07-12 21:54:17] INFO - Failed to load LED strip.  Using emu driver.
+[2025-07-12 21:54:17] WARNING - Failed to load enhanced colors, using defaults: malformed node or string: None
+[2025-07-12 21:54:17] WARNING - Failed to load flying notes settings, using defaults: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:54:18] INFO - Skipping connectall.py script copy on Windows
+[2025-07-12 21:54:18] INFO - Skipping abcmidi installation on Windows
+[2025-07-12 21:54:18] INFO - Namespace(clear=False, display=None, fontdir=None, port=None, skipupdate=False, webinterface=None, rotatescreen='false', appmode='platform', leddriver='rpi_ws281x')
+[2025-07-12 21:54:18] INFO - SPI is not enabled. Enabling SPI interface...
+[2025-07-12 21:54:18] WARNING - Failed to enable SPI: Command '['sudo', 'raspi-config', 'nonint', 'do_spi', '0']' returned non-zero exit status 2147942405.
+[2025-07-12 21:54:18] INFO - Starting webinterface
+[2025-07-12 21:54:18] WARNING - Failed to load flying notes settings: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-12 21:54:18] INFO - Flying notes components initialized successfully
+[2025-07-12 21:54:18] INFO - WebSocket listening on: 192.168.1.220:8765
+[2025-07-12 21:54:18] INFO - Creating new Hotspot profile...
+[2025-07-12 21:54:18] WARNING - An error occurred while creating the Hotspot profile: Command '['sudo', 'nmcli', 'connection', 'add', 'type', 'wifi', 'ifname', 'wlan0', 'con-name', 'Hotspot', 'autoconnect', 'no', 'ssid', 'PianoLEDVisualizer']' returned non-zero exit status 2147942405.
+[2025-07-12 21:54:18] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:54:18] INFO - Hotspot is enabled in settings but not running. Starting hotspot...
+[2025-07-12 21:54:18] INFO - Enabling Hotspot
+[2025-07-12 21:54:23] WARNING - Error checking hotspot status: [WinError 2] The system cannot find the file specified
+[2025-07-12 21:54:23] WARNING - Failed to start hotspot
+[2025-07-12 21:54:30] WARNING - USB gadget mode is only supported on Raspberry Pi hardware, not Windows
+[2025-07-12 21:57:41] WARNING - USB gadget mode is only supported on Raspberry Pi hardware, not Windows
+[2025-07-12 21:58:01] WARNING - USB gadget mode is only supported on Raspberry Pi hardware, not Windows

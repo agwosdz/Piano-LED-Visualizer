@@ -1,6 +1,11 @@
 import time
 
-from rpi_ws281x import Color
+try:
+    from rpi_ws281x import Color
+except ImportError:
+    # Fallback for when rpi_ws281x is not available
+    def Color(red, green, blue):
+        return (red << 16) | (green << 8) | blue
 
 from lib.functions import get_note_position, find_between
 from lib.log_setup import logger
@@ -153,7 +158,7 @@ class MIDIEventProcessor:
         
         # Calculate brightness based on velocity if in velocity mode
         if self.ledsettings.mode == "Velocity":
-            brightness = max(0.01, (100 / max(1, (float(velocity) / 127)) / 100)
+            brightness = (100 / (float(velocity) / 127)) / 100
         else:
             brightness = 1
 
@@ -175,13 +180,15 @@ class MIDIEventProcessor:
         channel = find_between(str(msg), "channel=", " ")
         if channel == "12" or channel == "11":
             if self.ledsettings.skipped_notes != "Finger-based":
-                # Apply right hand or left hand color
+                # Apply right hand or left hand color using enhanced color system
+                note_type = self.learning.get_note_type(msg.note)
                 if channel == "12":
-                    hand_color = self.learning.hand_colorR
+                    hand = 'right'
                 else:
-                    hand_color = self.learning.hand_colorL
-
-                red, green, blue = map(int, self.learning.hand_colorList[hand_color])
+                    hand = 'left'
+                
+                color = self.learning.get_learn_color(hand, note_type, is_upcoming=False)
+                red, green, blue = map(int, color)
                 s_color = Color(red, green, blue)
                 self.ledstrip.strip.setPixelColor(note_position, s_color)
                 self.ledstrip.set_adjacent_colors(note_position, s_color, False)

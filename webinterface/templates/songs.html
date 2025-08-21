@@ -594,140 +594,121 @@
 
             </div>
 
-            <div class="flex flex-wrap w-full md:w-1/2 m-auto">
-                <div class="w-full md:w-1/2 px-3 m-auto">
-                    <label class="block uppercase tracking-wide text-xs font-bold mt-2 text-gray-600 dark:text-gray-400"
-                           data-translate="left_hand_color">
-                        Left hand color
-                    </label>
-                    <div class="justify-center flex">
-                        <svg onclick="change_setting('change_handL_color', -1)" xmlns="http://www.w3.org/2000/svg"
-                             class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                        </svg>
-                        <div class="w-full justify-center flex text-sm text-gray-600 dark:text-gray-400">
-                            <svg class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <rect id="hand_colorL" width="30" height="30" style="fill:rgb(0,0,255);"/>
-                            </svg>
-                        </div>
-                        <svg onclick="change_setting('change_handL_color', 1)" xmlns="http://www.w3.org/2000/svg"
-                             class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </div>
-                    <div class="justify-center flex">
-                        <label class="uppercase tracking-wide text-xs font-bold mt-2 text-gray-600 dark:text-gray-400">
-                            <input id="is_led_activeL" onchange="change_setting('change_left_led_active', this.checked)"
-                                class="w-4 h-4 mr-2 border border-gray-300 rounded"
-                                type="checkbox"/>
-                            <div class="inline" data-translate="active">Active</div>
-                        </label>
-                    </div>
+
+
+            <!-- Enhanced Learn Controls -->
+            <div class="w-full m-auto mt-6">
+                <div class="flex justify-center mb-4">
+                    <button onclick="window.open('/flying_notes', '_blank')" 
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mr-4">
+                        🎹 Flying Notes Visualizer
+                    </button>
+                    <button onclick="toggleEnhancedColors()" 
+                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
+                        🎨 Enhanced Colors
+                    </button>
                 </div>
-
-                <div class="w-full md:w-1/2 px-3 m-auto">
-                    <label class="block uppercase tracking-wide text-xs font-bold mt-2 text-gray-600 dark:text-gray-400"
-                           data-translate="right_hand_color">
-                        Right hand color
-                    </label>
-                    <div class="justify-center flex">
-                        <svg onclick="change_setting('change_handR_color', -1)" xmlns="http://www.w3.org/2000/svg"
-                             class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                        </svg>
-                        <div class="w-full justify-center flex text-sm text-gray-600 dark:text-gray-400">
-                            <svg class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <rect id="hand_colorR" width="30" height="30" style="fill:rgb(0,0,255);"/>
-                            </svg>
+                
+                <div id="enhanced_colors_panel" class="hidden bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                    <h3 class="text-lg font-bold mb-4 text-gray-700 dark:text-gray-300">Enhanced Color Settings</h3>
+                    
+                    <!-- Left Hand Colors -->
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2 text-gray-600 dark:text-gray-400">Left Hand</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">White Keys</label>
+                                <input type="color" id="left_white_current" class="w-full h-8 rounded" value="#0000FF">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Black Keys</label>
+                                <input type="color" id="left_black_current" class="w-full h-8 rounded" value="#0000AA">
+                            </div>
                         </div>
-                        <svg onclick="change_setting('change_handR_color', 1)" xmlns="http://www.w3.org/2000/svg"
-                             class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
                     </div>
-                    <div class="justify-center flex">
-                        <label class="uppercase tracking-wide text-xs font-bold mt-2 text-gray-600 dark:text-gray-400">
-                            <input id="is_led_activeR" onchange="change_setting('change_right_led_active', this.checked)"
-                                class="w-4 h-4 mr-2 border border-gray-300 rounded"
-                                type="checkbox"/>
-                            <div class="inline" data-translate="active">Active</div>
-                        </label>
+                    
+                    <!-- Right Hand Colors -->
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2 text-gray-600 dark:text-gray-400">Right Hand</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">White Keys</label>
+                                <input type="color" id="right_white_current" class="w-full h-8 rounded" value="#FF0000">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">Black Keys</label>
+                                <input type="color" id="right_black_current" class="w-full h-8 rounded" value="#AA0000">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="flex justify-center items-center my-2">
-                <label class="inline-flex items-center">
-                    <input id="show_score_checkbox" type="checkbox" class="w-4 h-4 mr-2 border border-gray-300 rounded" onchange="document.getElementById('score_display').classList.toggle('hidden', !this.checked); setCookie('show_score', this.checked ? '1' : '0', 365);" checked>
-                    <span class="text-sm font-medium text-gray-600 dark:text-gray-400" data-translate="show_score">Show Score</span>
-                </label>
-                <label class="inline-flex items-center ml-6">
-                    <input id="show_summary_popup" type="checkbox" class="w-4 h-4 mr-2 border border-gray-300 rounded" onchange="setCookie('show_summary_popup', this.checked ? '1' : '0', 365)" checked>
-                    <span class="text-sm font-medium text-gray-600 dark:text-gray-400">Show Summery</span>
-                </label>
-            </div>
-            <script>
-                // Initialize the checkboxes from cookies (default: enabled)
-                (function(){
-                    try {
-                        var summaryPref = (typeof getCookie === 'function') ? getCookie('show_summary_popup') : null;
-                        var scorePref = (typeof getCookie === 'function') ? getCookie('show_score') : null;
-
-                        var summaryEl = document.getElementById('show_summary_popup');
-                        if (summaryEl && summaryPref !== null) summaryEl.checked = (summaryPref === '1');
-
-                        var scoreEl = document.getElementById('show_score_checkbox');
-                        if (scoreEl && scorePref !== null) scoreEl.checked = (scorePref === '1');
-
-                        // Ensure score display visibility reflects saved preference
-                        var scoreDisplay = document.getElementById('score_display');
-                        if (scoreEl && scoreDisplay) {
-                            scoreDisplay.classList.toggle('hidden', !scoreEl.checked);
-                        }
-                    } catch (e) { /* no-op */ }
-                })();
-            </script>
-              <!-- Score display -->
-              <div id="score_display" class="text-center text-xl font-bold text-gray-600 dark:text-gray-400">
-                <bdi><span data-translate="Score">Score</span>: <span id="score_value">0</span>
-                <span class="text-lg ml-4"><span data-translate="Combo">Combo</span>: <span id="combo_value">0</span>x</span>
-                <span class="text-lg ml-4"><span data-translate="Multiplier">Multiplier</span>: <span id="multiplier_value">1</span>x</span></bdi>
-                <span id="score_update_feedback" class="ml-2 text-lg font-bold"></span>
-            </div>
-
-            <!-- Session Summary Window -->
-            <div id="session_summary_window" 
-                 class="fixed inset-0 flex items-center justify-center z-50 hidden 
-                        bg-black bg-opacity-50 dark:bg-opacity-70">
-                 <div class="relative p-12 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl 
-                             border border-gray-300 dark:border-gray-600 
-                             w-full md:w-full lg:w-full xl:w-full h-auto max-h-[95vh] 
-                             flex flex-col 
-                             transform translate-y-full opacity-0 transition-all duration-500 ease-in-out">
-                    <div class="flex justify-between items-center mb-6 flex-shrink-0">
-                        <h3 class="text-3xl font-semibold text-gray-700 dark:text-gray-300" data-translate="session_summary">Session Summary</h3>
-                        <button id="close_summary_button" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
+                    
+                    <div class="flex justify-center">
+                        <button onclick="saveEnhancedColors()" 
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Save Colors
                         </button>
                     </div>
-                    <div class="text-lg text-gray-600 dark:text-gray-400 space-y-2 mb-8 flex-shrink-0 grid grid-cols-2 gap-x-8">
-                        <p><strong data-translate="left_hand_mistakes">Left Hand Mistakes:</strong> <span id="summary_mistakes_l_count">0</span></p>
-                         <p><strong data-translate="right_hand_mistakes">Right Hand Mistakes:</strong> <span id="summary_mistakes_r_count">0</span></p>
-                         <p><strong data-translate="left_hand_delay">Left Hand Max Delay Count:</strong> <span id="summary_delay_l">0</span></p>
-                         <p><strong data-translate="right_hand_delay">Right Hand Max Delay Count:</strong> <span id="summary_delay_r">0</span></p>
-                    </div>
-                    <!-- Graph Canvas -->
-                    <div class="flex-grow relative min-h-[300px]">
-                         <canvas id="summary_graph_canvas"></canvas>
-                         <button id="reset_zoom_button" 
-                                 class="absolute top-2 right-2 z-20 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold py-2 px-6 rounded-md text-base shadow"
-                                 data-translate="reset_zoom">
-                             Reset Zoom
-                         </button>
-                    </div>
                 </div>
             </div>
+
+            <script>
+            function toggleEnhancedColors() {
+                const panel = document.getElementById('enhanced_colors_panel');
+                panel.classList.toggle('hidden');
+                if (!panel.classList.contains('hidden')) {
+                    loadEnhancedColors();
+                }
+            }
+            
+            function loadEnhancedColors() {
+                fetch('/api/learn_colors/settings')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.left_hand) {
+                            document.getElementById('left_white_current').value = data.left_hand.white_current || '#0000FF';
+                            document.getElementById('left_black_current').value = data.left_hand.black_current || '#0000AA';
+                        }
+                        if (data.right_hand) {
+                            document.getElementById('right_white_current').value = data.right_hand.white_current || '#FF0000';
+                            document.getElementById('right_black_current').value = data.right_hand.black_current || '#AA0000';
+                        }
+                    })
+                    .catch(error => console.error('Error loading enhanced colors:', error));
+            }
+            
+            function saveEnhancedColors() {
+                const colorSettings = {
+                    left_hand: {
+                        white_current: document.getElementById('left_white_current').value,
+                        black_current: document.getElementById('left_black_current').value
+                    },
+                    right_hand: {
+                        white_current: document.getElementById('right_white_current').value,
+                        black_current: document.getElementById('right_black_current').value
+                    }
+                };
+                
+                fetch('/api/learn_colors/settings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(colorSettings)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Enhanced colors saved successfully!');
+                    } else {
+                        alert('Error saving colors: ' + (data.error || 'Unknown error'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error saving enhanced colors:', error);
+                    alert('Error saving colors');
+                });
+            }
+            </script>
 
             <div id="sheet_wrapper" style="height:80vh; margin-bottom: 100px;">
                 {% include 'sheet_music.html' %}

@@ -26,37 +26,83 @@ function get_homepage_data_loop() {
                 download = 0;
                 upload = 0;
             }
-            animateValue(document.getElementById("cpu_number"), last_cpu_usage,
-                response_pc_stats["cpu_usage"], refresh_rate * 500, false);
-            document.getElementById("memory_usage_percent").innerHTML = response_pc_stats["memory_usage_percent"] + "%";
-            document.getElementById("memory_usage").innerHTML =
+            const cpuNumberEl = document.getElementById("cpu_number");
+            if (cpuNumberEl) {
+                animateValue(cpuNumberEl, last_cpu_usage, response_pc_stats["cpu_usage"], refresh_rate * 500, false);
+            }
+            
+            const memoryUsagePercentEl = document.getElementById("memory_usage_percent");
+            if (memoryUsagePercentEl) {
+                memoryUsagePercentEl.innerHTML = response_pc_stats["memory_usage_percent"] + "%";
+            }
+            
+            const memoryUsageEl = document.getElementById("memory_usage");
+            if (memoryUsageEl) {
+                memoryUsageEl.innerHTML = formatBytes(response_pc_stats["memory_usage_used"], 2, false) + "/" +
+                    formatBytes(response_pc_stats["memory_usage_total"]);
+            }
+            
+            const cpuTempEl = document.getElementById("cpu_temp");
+            if (cpuTempEl) {
+                cpuTempEl.innerHTML = response_pc_stats["cpu_temp"];
+            }
 
-                formatBytes(response_pc_stats["memory_usage_used"], 2, false) + "/" +
-                formatBytes(response_pc_stats["memory_usage_total"]);
-            document.getElementById("cpu_temp").innerHTML = response_pc_stats["cpu_temp"];
+            const cardUsageEl = document.getElementById("card_usage");
+            if (cardUsageEl) {
+                cardUsageEl.innerHTML = formatBytes(response_pc_stats["card_space_used"], 2, false) + "/" +
+                    formatBytes(response_pc_stats["card_space_total"]);
+            }
+            
+            const cardUsagePercentEl = document.getElementById("card_usage_percent");
+            if (cardUsagePercentEl) {
+                cardUsagePercentEl.innerHTML = response_pc_stats["card_space_percent"] + "%";
+            }
+            
+            const downloadNumberEl = document.getElementById("download_number");
+            if (downloadNumberEl) {
+                animateValue(downloadNumberEl, last_download, download, refresh_rate * 500, true);
+            }
+            
+            const uploadNumberEl = document.getElementById("upload_number");
+            if (uploadNumberEl) {
+                animateValue(uploadNumberEl, last_upload, upload, refresh_rate * 500, true);
+            }
 
-            document.getElementById("card_usage").innerHTML =
-                formatBytes(response_pc_stats["card_space_used"], 2, false) + "/" +
-                formatBytes(response_pc_stats["card_space_total"]);
-            document.getElementById("card_usage_percent").innerHTML = response_pc_stats["card_space_percent"] + "%";
-            animateValue(document.getElementById("download_number"), last_download, download, refresh_rate * 500, true);
-            animateValue(document.getElementById("upload_number"), last_upload, upload, refresh_rate * 500, true);
+            const coverStateEl = document.getElementById("cover_state");
+            if (coverStateEl) {
+                coverStateEl.innerHTML = response_pc_stats["cover_state"];
+            }
 
-            document.getElementById("cover_state").innerHTML = response_pc_stats["cover_state"];
-
-            document.getElementById("led_fps").innerHTML = response_pc_stats.led_fps;
-            document.getElementById("cpu_count").innerHTML = response_pc_stats.cpu_count;
-            document.getElementById("cpu_pid").innerHTML = response_pc_stats.cpu_pid;
-            document.getElementById("cpu_freq").innerHTML = response_pc_stats.cpu_freq;
-            document.getElementById("memory_pid").innerHTML =
-                formatBytes(response_pc_stats.memory_pid, 2, false);
-
-            document.getElementById("cover_state").innerHTML = response_pc_stats.cover_state;
+            const ledFpsEl = document.getElementById("led_fps");
+            if (ledFpsEl) {
+                ledFpsEl.innerHTML = response_pc_stats.led_fps;
+            }
+            
+            const cpuCountEl = document.getElementById("cpu_count");
+            if (cpuCountEl) {
+                cpuCountEl.innerHTML = response_pc_stats.cpu_count;
+            }
+            
+            const cpuPidEl = document.getElementById("cpu_pid");
+            if (cpuPidEl) {
+                cpuPidEl.innerHTML = response_pc_stats.cpu_pid;
+            }
+            
+            const cpuFreqEl = document.getElementById("cpu_freq");
+            if (cpuFreqEl) {
+                cpuFreqEl.innerHTML = response_pc_stats.cpu_freq;
+            }
+            
+            const memoryPidEl = document.getElementById("memory_pid");
+            if (memoryPidEl) {
+                memoryPidEl.innerHTML = formatBytes(response_pc_stats.memory_pid, 2, false);
+            }
 
             // change value of select based on response_pc_stats.screen_on
-            document.getElementById("screen_on").value = response_pc_stats.screen_on;
-
-            document.getElementById("cover_state").innerHTML = response_pc_stats.cover_state;
+            const screenOnEl = document.getElementById("screen_on");
+            if (screenOnEl) {
+                screenOnEl.value = response_pc_stats.screen_on;
+            }
 
 
             download_start = response_pc_stats.download;
@@ -1117,8 +1163,7 @@ function get_learning_status(loop_call = false) {
                 case 4:
                     document.getElementById("start_learning").classList.remove("pointer-events-none", "opacity-50");
                     document.getElementById("start_learning").innerHTML = '<span class="flex uppercase text-xs m-auto ">' +
-                        '<div id="learning_status" class="align-middle text-center" data-translate="learning_status">Start learning</div></span>';
-                    translateStaticContent();
+                        '<div id="learning_status" class="align-middle text-center">Start learning</div></span>';
                     break;
                 case 5:
                     document.getElementById("start_learning").innerHTML = '<span class="flex uppercase text-xs m-auto ">' +
@@ -1149,8 +1194,9 @@ function get_learning_status(loop_call = false) {
                 let hand_colorR_RGB = response.hand_colorList[hand_colorR][0] + ", " + response.hand_colorList[hand_colorR][1] + ", " + response.hand_colorList[hand_colorR][2];
                 let hand_colorL_RGB = response.hand_colorList[hand_colorL][0] + ", " + response.hand_colorList[hand_colorL][1] + ", " + response.hand_colorList[hand_colorL][2];
 
-                document.getElementById("hand_colorR").style.fill = 'rgb(' + hand_colorR_RGB + ')';
-                document.getElementById("hand_colorL").style.fill = 'rgb(' + hand_colorL_RGB + ')';
+                // Legacy hand color elements removed - using enhanced color system
+                // document.getElementById("hand_colorR").style.fill = 'rgb(' + hand_colorR_RGB + ')';
+                // document.getElementById("hand_colorL").style.fill = 'rgb(' + hand_colorL_RGB + ')';
 
                 document.getElementById("number_of_mistakes").value = response["number_of_mistakes"];
 
@@ -1191,18 +1237,32 @@ function get_learning_status(loop_call = false) {
                     '   document.getElementById(\'end_point\').innerHTML = this.value">\n' +
                     '</div>';
                 
-                if (response["is_led_activeL"] === 1) {
-                    document.getElementById("is_led_activeL").checked = true;
-                } else {
-                    document.getElementById("is_led_activeL").checked = false;
-                    document.getElementById("hand_colorL").style.fill = 'rgb(0,0,0)';
+                const isLedActiveLEl = document.getElementById("is_led_activeL");
+                if (isLedActiveLEl) {
+                    if (response["is_led_activeL"] === 1) {
+                        isLedActiveLEl.checked = true;
+                    } else {
+                        isLedActiveLEl.checked = false;
+                        // Legacy hand color element removed - using enhanced color system
+                        // const handColorLEl = document.getElementById("hand_colorL");
+                        // if (handColorLEl) {
+                        //     handColorLEl.style.fill = 'rgb(0,0,0)';
+                        // }
+                    }
                 }
 
-                if (response["is_led_activeR"] === 1) {
-                    document.getElementById("is_led_activeR").checked = true;
-                } else {
-                    document.getElementById("is_led_activeR").checked = false;
-                    document.getElementById("hand_colorR").style.fill = 'rgb(0,0,0)';
+                const isLedActiveREl = document.getElementById("is_led_activeR");
+                if (isLedActiveREl) {
+                    if (response["is_led_activeR"] === 1) {
+                        isLedActiveREl.checked = true;
+                    } else {
+                        isLedActiveREl.checked = false;
+                        // Legacy hand color element removed - using enhanced color system
+                        // const handColorREl = document.getElementById("hand_colorR");
+                        // if (handColorREl) {
+                        //     handColorREl.style.fill = 'rgb(0,0,0)';
+                        // }
+                    }
                 }
             }
 
@@ -1524,344 +1584,115 @@ function handle_confirmation_button(element, delay = 1000) {
     }, delay);
 }
 
-function handleScoreUpdate(data) {
-    if (data.type === "score_update") {
-        const scoreElement = document.getElementById('score_value');
-        const comboElement = document.getElementById('combo_value');
-        const multiplierElement = document.getElementById('multiplier_value');
-        const feedbackElement = document.getElementById('score_update_feedback');
-
-        if (scoreElement) scoreElement.textContent = data.score;
-        if (comboElement) comboElement.textContent = data.combo;
-        if (multiplierElement) multiplierElement.textContent = data.multiplier;
-
-        if (feedbackElement && data.last_update !== 0) {
-            let updateValue = data.last_update;
-            let updateColor = updateValue > 0 ? 'text-green-500' : 'text-red-500';
-            let sign = updateValue > 0 ? '+' : '';
-
-            feedbackElement.textContent = `(${sign}${updateValue})`;
-            feedbackElement.className = `ml-2 text-lg font-bold ${updateColor} opacity-100 transition-opacity duration-1000`;
-
-            // Fade out the feedback
-            setTimeout(() => {
-                feedbackElement.classList.add('opacity-0');
-            }, 100); // Start fading shortly after appearing
-            
-            // Clear the text after fade out
-             setTimeout(() => {
-                feedbackElement.textContent = '';
-            }, 1100); // Corresponds to duration-1000 + timeout delay
-        }
-         else if (feedbackElement) {
-             // Clear feedback instantly if last_update is 0 (e.g., on reset)
-             feedbackElement.textContent = '';
-             feedbackElement.className = `ml-2 text-lg font-bold opacity-0`;
-         }
-    }
+function initialize_usb_gadget() {
+    get_usb_gadget_status();
 }
 
-let summaryTimeout = null; // To store the timeout ID
-let summaryChart = null; // To store the Chart instance
-
-function handleSessionSummary(data, retries = 5) {
-
-    console.log(`Attempting to handle session summary (Retries left: ${retries})`, data);
-
-    // Respect user preference for showing summary popup
-    try {
-        const prefCookie = (typeof getCookie === 'function') ? getCookie('show_summary_popup') : null;
-        // Also check the checkbox state on the page if present
-        const prefCheckbox = document.getElementById('show_summary_popup');
-        const isAllowed = (prefCookie === null ? (prefCheckbox ? prefCheckbox.checked : true) : prefCookie === '1');
-        if (!isAllowed) {
-            console.log('Session summary popup disabled by user preference.');
-            return; // Do not open the popup
-        }
-    } catch (e) {
-        // If anything goes wrong, default to showing the popup
-    }
-    const summaryWindow = document.getElementById('session_summary_window');
-    const summaryContainer = summaryWindow ? summaryWindow.querySelector(':scope > div') : null; // Get the inner container for transform
-    const delayR_el = document.getElementById('summary_delay_r');
-    const delayL_el = document.getElementById('summary_delay_l');
-    const mistakesR_el = document.getElementById('summary_mistakes_r_count');
-    const mistakesL_el = document.getElementById('summary_mistakes_l_count');
-    const closeButton = document.getElementById('close_summary_button');
-    const canvas = document.getElementById('summary_graph_canvas');
-
-    // Check if elements are loaded
-    if (!summaryWindow || !summaryContainer || !delayR_el || !delayL_el || !mistakesR_el || !mistakesL_el || !closeButton || !canvas) {
-        if (retries > 0) {
-            console.log("Summary elements not found, retrying...");
-            setTimeout(() => handleSessionSummary(data, retries - 1), 200); // Wait 200ms and retry
-            return;
-        } else {
-            console.error("Summary elements or canvas not found after multiple retries!");
-            return; // Give up after several retries
-        }
-    }
-
-    console.log("Summary elements found, proceeding.");
-
-    // Populate text data
-    delayR_el.textContent = data.delay_r;
-    delayL_el.textContent = data.delay_l;
-    mistakesR_el.textContent = data.mistakes_r_count;
-    mistakesL_el.textContent = data.mistakes_l_count;
-    
-    // Add translations if needed
-    translateStaticContent();
-
-    // Clear any existing timeout to prevent premature hiding
-    if (summaryTimeout) {
-        clearTimeout(summaryTimeout);
-        summaryTimeout = null;
-    }
-    
-    // --- Chart.js Setup --- 
-    const ctx = canvas.getContext('2d');
-    
-    // Destroy previous chart instance if it exists
-    if (summaryChart) {
-        summaryChart.destroy();
-        summaryChart = null;
-    }
-
-    // Prepare chart data
-    const timingDataR = data.timing_r.map(item => ({ x: item[0], y: item[1] }));
-    const timingDataL = data.timing_l.map(item => ({ x: item[0], y: item[1] }));
-
-    // Find min/max for axes scaling (adjust y slightly for markers)
-    const allDelays = timingDataR.map(p => p.y).concat(timingDataL.map(p => p.y));
-    const minY = allDelays.length > 0 ? Math.min(...allDelays) : -0.1;
-    const maxY = allDelays.length > 0 ? Math.max(...allDelays, data.max_delay) : data.max_delay + 0.1;
-    const minYAxis = minY - (maxY - minY) * 0.1; // Add 10% padding below
-    const maxYAxis = maxY + (maxY - minY) * 0.1; // Add 10% padding above
-
-    const mistakeDataR = data.mistakes_r_times.map(time => ({ x: time, y: minYAxis }));
-    const mistakeDataL = data.mistakes_l_times.map(time => ({ x: time, y: minYAxis }));
-
-    summaryChart = new Chart(ctx, {
-        type: 'scatter',
-        data: {
-            datasets: [
-                {
-                    label: translate('right_hand_notes'),
-                    data: timingDataR,
-                    backgroundColor: data.color_r,
-                    borderColor: data.color_r,
-                    pointRadius: 5,
-                },
-                {
-                    label: translate('left_hand_notes'),
-                    data: timingDataL,
-                    backgroundColor: data.color_l,
-                    borderColor: data.color_l,
-                    pointRadius: 5,
-                },
-                {
-                    label: translate('right_hand_mistakes'),
-                    data: mistakeDataR,
-                    backgroundColor: data.color_r,
-                    borderColor: data.color_r,
-                    pointStyle: 'crossRot',
-                    radius: 8, 
-                    showLine: false
-                },
-                {
-                    label: translate('left_hand_mistakes'),
-                    data: mistakeDataL,
-                    backgroundColor: data.color_l,
-                    borderColor: data.color_l,
-                    pointStyle: 'crossRot',
-                    radius: 8,
-                    showLine: false
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: translate('note_timing_vs_delay')
-                },
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            let label = context.dataset.label || '';
-                            if (label.includes(translate('mistakes')) || label.includes(translate('right_hand_mistakes')) || label.includes(translate('left_hand_mistakes'))) {
-                                return `${label}: ${translate('time')} ${context.parsed.x.toFixed(2)}s`;
-                            }
-                            if (label) {
-                                label += ': ';
-                            }
-                            if (context.parsed.y !== null) {
-                                label += `${translate('delay')} ${context.parsed.y.toFixed(3)}s`;
-                            }
-                            if (context.parsed.x !== null) {
-                                label += ` ${translate('at')} ${context.parsed.x.toFixed(2)}s`;
-                            }
-                            return label;
-                        }
-                    }
-                },
-                annotation: {
-                    annotations: {
-                        maxDelayLine: {
-                            type: 'line',
-                            yMin: data.max_delay,
-                            yMax: data.max_delay,
-                            borderColor: 'rgb(15, 249, 78)', // Green line
-                            borderWidth: 2,
-                            borderDash: [6, 6],
-                            label: {
-                                content: translate('max_acceptable_delay'),
-                                enabled: true,
-                                position: 'start'
-                            }
-                        }
-                    }
-                },
-                zoom: {
-                    pan: {
-                        enabled: true,
-                        mode: 'xy',
-                        modifierKey: null, // Ensures no modifier key is needed for panning
-                        threshold: 5       // Panning starts after dragging 5 pixels
-                    },
-                    zoom: {
-                        wheel: {
-                            enabled: true,
-                        },
-                        pinch: {
-                            enabled: true
-                        },
-                        mode: 'xy',
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    type: 'linear',
-                    position: 'bottom',
-                    title: {
-                        display: true,
-                        text: translate('time')
-                    },
-                    beginAtZero: true
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: translate('delay')
-                    },
-                    min: minYAxis,
-                    max: maxYAxis
-                }
-            }
-        }
-    });
-
-    // Add event listener for the reset zoom button
-    const resetZoomButton = document.getElementById('reset_zoom_button');
-    if (resetZoomButton && summaryChart) {
-        resetZoomButton.addEventListener('click', () => {
-            summaryChart.resetZoom();
-        });
-    } else {
-        if (!resetZoomButton) console.warn("Reset zoom button (reset_zoom_button) not found in the DOM.");
-        // summaryChart might not be initialized if canvas wasn't found, which is handled earlier
-    }
-
-    // Show and animate the window (slide from bottom)
-    summaryWindow.classList.remove('hidden'); // Make parent visible first
-    // Wait a tick for display change, then trigger animation
-    requestAnimationFrame(() => {
-        summaryContainer.classList.remove('translate-y-full', 'opacity-0');
-        summaryContainer.classList.add('translate-y-0', 'opacity-100');
-    });
-
-    // Function to hide the window
-    const hideSummary = () => {
-        summaryContainer.classList.remove('translate-y-0', 'opacity-100');
-        summaryContainer.classList.add('translate-y-full', 'opacity-0');
-        // Use setTimeout to truly hide parent after transition ends
-        setTimeout(() => {
-             summaryWindow.classList.add('hidden');
-             // Destroy chart when hiding
-             if (summaryChart) {
-                 summaryChart.destroy();
-                 summaryChart = null;
-             }
-        }, 500); // Match transition duration
-        // Clear auto-hide timeout if closed manually
-        if (summaryTimeout) {
-             clearTimeout(summaryTimeout);
-             summaryTimeout = null;
+function get_usb_gadget_status() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            const response = JSON.parse(this.responseText);
+            update_usb_gadget_status(response);
         }
     };
-
-    // Add event listener to close button (only once)
-    // Remove previous listener if it exists to avoid duplicates
-    closeButton.replaceWith(closeButton.cloneNode(true)); // Simple way to remove listeners
-    document.getElementById('close_summary_button').addEventListener('click', hideSummary);
-
-    // Optional timeout to auto-hide the summary after a certain period
-    // summaryTimeout = setTimeout(hideSummary, 30000); // Example: Hide after 30 seconds
+    xhttp.open("GET", "/api/usb_gadget_status", true);
+    xhttp.send();
 }
-window.handleSessionSummary = handleSessionSummary;
 
-// --- Initialize persisted preferences for Songs page toggles ---
-function initSongPagePreferences() {
-    try {
-        // Read cookie preferences (default to enabled if not set)
-        const summaryPref = (typeof getCookie === 'function') ? getCookie('show_summary_popup') : null;
-        const scorePref = (typeof getCookie === 'function') ? getCookie('show_score') : null;
+function update_usb_gadget_status(response) {
+    // Update status display
+    const statusElement = document.getElementById('gadget-status');
+    if (statusElement) {
+        statusElement.textContent = response.enabled ? 'Enabled' : 'Disabled';
+        statusElement.className = response.enabled ? 'text-green-600 font-semibold' : 'text-red-600 font-semibold';
+    }
 
-        // Apply to summary checkbox if present
-        const summaryEl = document.getElementById('show_summary_popup');
-        if (summaryEl && summaryPref !== null) {
-            summaryEl.checked = (summaryPref === '1');
-        }
+    // Update enable/disable buttons
+    const enableBtn = document.getElementById('enable-gadget-btn');
+    const disableBtn = document.getElementById('disable-gadget-btn');
+    if (enableBtn && disableBtn) {
+        enableBtn.disabled = response.enabled;
+        disableBtn.disabled = !response.enabled;
+        enableBtn.className = response.enabled ? 
+            'px-4 py-2 bg-gray-300 text-gray-500 rounded cursor-not-allowed' : 
+            'px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700';
+        disableBtn.className = !response.enabled ? 
+            'px-4 py-2 bg-gray-300 text-gray-500 rounded cursor-not-allowed' : 
+            'px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700';
+    }
 
-        // Apply to score checkbox if present and sync the score display visibility
-        const scoreEl = document.getElementById('show_score_checkbox');
-        const scoreDisplay = document.getElementById('score_display');
-        if (scoreEl) {
-            if (scorePref !== null) {
-                scoreEl.checked = (scorePref === '1');
-            }
-            if (scoreDisplay) {
-                scoreDisplay.classList.toggle('hidden', !scoreEl.checked);
-            }
-        }
-    } catch (e) {
-        // Fail silently; preferences will remain default
+    // Update settings form
+    const autoEnableCheckbox = document.getElementById('auto-enable');
+    if (autoEnableCheckbox) {
+        autoEnableCheckbox.checked = response.auto_enable;
+    }
+
+    const vendorIdInput = document.getElementById('vendor-id');
+    if (vendorIdInput) {
+        vendorIdInput.value = response.vendor_id;
+    }
+
+    const productIdInput = document.getElementById('product-id');
+    if (productIdInput) {
+        productIdInput.value = response.product_id;
+    }
+
+    const manufacturerInput = document.getElementById('manufacturer');
+    if (manufacturerInput) {
+        manufacturerInput.value = response.manufacturer;
+    }
+
+    const productNameInput = document.getElementById('product-name');
+    if (productNameInput) {
+        productNameInput.value = response.product_name;
     }
 }
 
-// Run once after DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSongPagePreferences);
-} else {
-    initSongPagePreferences();
+function enable_usb_gadget() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            get_usb_gadget_status();
+        }
+    };
+    xhttp.open("POST", "/api/usb_gadget_enable", true);
+    xhttp.send();
 }
 
-// Observe dynamic injections (e.g., when songs.html content is loaded via AJAX)
-const __songsPrefsObserver = new MutationObserver(() => {
-    const hasTargets = document.getElementById('show_score_checkbox') || document.getElementById('show_summary_popup');
-    if (hasTargets) {
-        initSongPagePreferences();
-    }
-});
-try {
-    __songsPrefsObserver.observe(document.body || document.documentElement, { childList: true, subtree: true });
-} catch (e) {
-    // ignore
+function disable_usb_gadget() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            get_usb_gadget_status();
+        }
+    };
+    xhttp.open("POST", "/api/usb_gadget_disable", true);
+    xhttp.send();
+}
+
+function update_usb_gadget_settings() {
+    const autoEnable = document.getElementById('auto-enable').checked;
+    const vendorId = document.getElementById('vendor-id').value;
+    const productId = document.getElementById('product-id').value;
+    const manufacturer = document.getElementById('manufacturer').value;
+    const productName = document.getElementById('product-name').value;
+
+    const data = {
+        auto_enable: autoEnable,
+        vendor_id: vendorId,
+        product_id: productId,
+        manufacturer: manufacturer,
+        product_name: productName
+    };
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            get_usb_gadget_status();
+        }
+    };
+    xhttp.open("POST", "/api/usb_gadget_settings", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(data));
 }
